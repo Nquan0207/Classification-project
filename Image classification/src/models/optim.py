@@ -35,3 +35,18 @@ def build_layerwise_lr_optimizer(model, head_lr: float = 3e-4, layer_decay: floa
 
     param_groups.append({"params": model.classifier.parameters(), "lr": head_lr})
     return optim.AdamW(param_groups, weight_decay=weight_decay)
+
+
+def build_ensemble_optimizer(model, head_lr: float = 3e-4, backbone_lr: float = 1e-5, weight_decay: float = 0.05):
+    """Two-group optimizer for the ensemble: low LR for backbones, high LR for fusion heads."""
+    backbone_params = list(model.vit.parameters()) + list(model.resnet.parameters())
+    head_params = [
+        p for name, p in model.named_parameters()
+        if not name.startswith("vit.") and not name.startswith("resnet.")
+    ]
+
+    param_groups = [
+        {"params": backbone_params, "lr": backbone_lr},
+        {"params": head_params, "lr": head_lr},
+    ]
+    return optim.AdamW(param_groups, weight_decay=weight_decay)

@@ -16,7 +16,7 @@ data:
   test_split: test.txt
   split_mode: copy
   image_size: 224
-  num_workers: 2
+  num_workers: 0
 
 train:
   batch_size: 32
@@ -26,15 +26,11 @@ train:
   use_focal_loss: false
   focal_gamma: 2.0
   freeze_backbone: false
-  optimizer_mode: layerwise
   dropout: 0.1
   label_smoothing: 0.1
   head_lr: 0.0003
+  backbone_lr: 0.00001
   layer_decay: 0.8
   weight_decay: 0.05
   patience: 5
   min_delta: 0.0001
-  experiment_name: vit_layerwise_aug
-
-inference:
-  checkpoint: artifacts/models/vit_layerwise_aug_best.pth

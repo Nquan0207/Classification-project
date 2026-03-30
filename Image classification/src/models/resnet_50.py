@@ -1,16 +1,15 @@
 from __future__ import annotations
 
-from numpy import shape
 import torch.nn as nn
-from torchvision.models import ViT_B_16_Weights, vit_b_16
+from torchvision.models import ResNet50_Weights, resnet50
 
 
-class ViTClassifier(nn.Module):
+class ResNet50Classifier(nn.Module):
     def __init__(self, num_classes: int, freeze_backbone: bool = False, dropout: float = 0.1):
         super().__init__()
-        self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
-        in_features = self.backbone.heads.head.in_features
-        self.backbone.heads = nn.Identity()
+        self.backbone = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
+        in_features = self.backbone.fc.in_features
+        self.backbone.fc = nn.Identity()
         self.classifier = nn.Sequential(
             nn.Linear(in_features, in_features // 2),
             nn.GELU(),
@@ -32,5 +31,4 @@ class ViTClassifier(nn.Module):
 
 
 if __name__ == "__main__":
-    model = ViTClassifier(num_classes=10)
-   
+    model = ResNet50Classifier(num_classes=10)

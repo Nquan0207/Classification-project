@@ -10,12 +10,14 @@ import torch.optim as optim
 from sklearn.metrics import accuracy_score, f1_score
 from tqdm import tqdm
 
-from image_classification.data.datasets import get_dataloaders
-from image_classification.engine.callbacks import EarlyStopping
-from image_classification.engine.evaluator import evaluate
-from image_classification.models.losses import FocalLoss, build_focal_alpha_from_dataset
-from image_classification.models.optim import build_layerwise_lr_optimizer
-from image_classification.models.vit import ViTClassifier
+from src.data.datasets import get_dataloaders
+from src.engine.callbacks import EarlyStopping
+from src.engine.evaluator import evaluate
+from src.models.losses import FocalLoss, build_focal_alpha_from_dataset
+from src.models.optim import build_ensemble_optimizer, build_layerwise_lr_optimizer
+from src.models.vit import ViTClassifier
+from src.models.resnet_50 import ResNet50Classifier
+from src.models.ensemble import EnsembleClassifier
 
 
 def train_one_epoch(model, loader, criterion, optimizer, device):
@@ -67,11 +69,30 @@ def run_experiment(config: dict, processed_dir: Path, device: torch.device):
     )
 
     train_ds = data_bundle["train_ds"]
-    model = ViTClassifier(
-        num_classes=len(train_ds.classes),
-        freeze_backbone=bool(train_cfg["freeze_backbone"]),
-        dropout=float(train_cfg["dropout"]),
-    ).to(device)
+    num_classes = len(train_ds.classes)
+    model_type = train_cfg.get("model_type", "vit")
+
+    if model_type == "vit":
+        model = ViTClassifier(
+            num_classes=num_classes,
+            freeze_backbone=bool(train_cfg["freeze_backbone"]),
+            dropout=float(train_cfg["dropout"]),
+        ).to(device)
+    elif model_type == "resnet50":
+        model = ResNet50Classifier(
+            num_classes=num_classes,
+            freeze_backbone=bool(train_cfg["freeze_backbone"]),
+            dropout=float(train_cfg["dropout"]),
+        ).to(device)
+    elif model_type == "ensemble":
+        model = EnsembleClassifier(
+            num_classes=num_classes,
+            fusion=train_cfg.get("fusion", "concat"),
+            freeze_backbones=bool(train_cfg["freeze_backbone"]),
+            dropout=float(train_cfg["dropout"]),
+        ).to(device)
+    else:
+        raise ValueError(f"Unknown model_type: {model_type}")
 
     if bool(train_cfg["use_focal_loss"]):
         alpha = build_focal_alpha_from_dataset(train_ds)
@@ -80,8 +101,16 @@ def run_experiment(config: dict, processed_dir: Path, device: torch.device):
         criterion = nn.CrossEntropyLoss(label_smoothing=float(train_cfg["label_smoothing"]))
 
     optimizer_mode = train_cfg["optimizer_mode"]
-    if optimizer_mode == "freeze":
-        optimizer = optim.AdamW(model.classifier.parameters(), lr=1e-3, weight_decay=1e-4)
+    if model_type == "ensemble" and optimizer_mode == "ensemble":
+        optimizer = build_ensemble_optimizer(
+            model,
+            head_lr=float(train_cfg["head_lr"]),
+            backbone_lr=float(train_cfg.get("backbone_lr", 1e-5)),
+            weight_decay=float(train_cfg["weight_decay"]),
+        )
+    elif optimizer_mode == "freeze":
+        classifier_params = model.classifier.parameters() if hasattr(model, "classifier") else model.parameters()
+        optimizer = optim.AdamW(classifier_params, lr=1e-3, weight_decay=1e-4)
     elif optimizer_mode == "full":
         optimizer = optim.AdamW(model.parameters(), lr=3e-5, weight_decay=0.05)
     elif optimizer_mode == "layerwise":
