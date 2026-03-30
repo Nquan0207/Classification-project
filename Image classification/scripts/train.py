@@ -7,23 +7,29 @@ import sys
 import torch
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-from image_classification.config import load_config
-from image_classification.engine.trainer import run_experiment
-from image_classification.utils.paths import resolve_path
-from image_classification.utils.seed import set_seed
+from src.config import load_config
+from src.engine.trainer import run_experiment
+from src.utils.paths import resolve_path
+from src.utils.seed import set_seed
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/train_vit.yaml")
+    parser.add_argument("--base-config", default="configs/base.yaml")
     args = parser.parse_args()
 
     root = Path.cwd()
-    config = load_config(args.config)
+    config_path = Path(args.config)
+    base_config_path = Path(args.base_config)
+
+    if config_path.resolve() == base_config_path.resolve():
+        config = load_config(config_path)
+    else:
+        config = load_config(config_path, base_path=base_config_path)
     set_seed(int(config["project"]["seed"]))
 
     processed_dir = resolve_path(root, config["paths"]["processed_dir"])

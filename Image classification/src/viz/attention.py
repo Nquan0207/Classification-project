@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 
-from image_classification.data.transforms import IMAGENET_MEAN, IMAGENET_STD
+IMAGENET_MEAN = [0.485, 0.456, 0.406]
+IMAGENET_STD = [0.229, 0.224, 0.225]
 
 
 def denormalize_image(img_tensor, mean=IMAGENET_MEAN, std=IMAGENET_STD):

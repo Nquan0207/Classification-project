@@ -5,13 +5,12 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-from image_classification.config import load_config
-from image_classification.data.prepare import prepare_splits
-from image_classification.utils.paths import resolve_path
+from src.config import load_config
+from src.data.prepare import prepare_splits
+from src.utils.paths import resolve_path
 
 
 def main():
