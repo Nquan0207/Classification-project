@@ -1,0 +1,58 @@
+paths:
+    data_path:  data/news/nytimes_dataset.json
+    train_path: data/news/nytimes_train.json
+    val_path:   data/news/nytimes_dev.json
+    test_path:  data/news/nytimes_test.json
+    images_dir: data/imgs
+
+model:
+    clip_model: openai/clip-vit-base-patch32
+    vision_model: google/vit-base-patch16-224-in21k
+    text_model: roberta-base
+    freeze_image: false
+    freeze_text: false
+    mlp_hidden_dim: 768
+    fusion_hidden_dim: 512
+    dropout: 0.2
+
+training:
+    batch_size: 8
+    epochs: 10
+    lr: 1.0e-5
+    weight_decay: 0.01
+    max_text_length: 512
+    image_size: 224
+    save_path: outputs/best_model.pth
+
+runtime:
+    seed: 42
+    batch_size: 32
+    shots_per_class: 100
+    max_samples:
+    cls_report: true
+
+labels:
+    - Health
+    - Books
+    - Science
+    - Art & Design
+    - Television
+    - Style
+    - Travel
+    - Media
+    - Movies
+    - Food
+    - Dance
+    - Well
+    - Real Estate
+    - Fashion
+    - Economy
+    - Technology
+    - Sports
+    - Your Money
+    - Theater
+    - Education
+    - Opinion
+    - Automobiles
+    - Music
+    - Global Business
