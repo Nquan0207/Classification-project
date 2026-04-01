@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Dataset & EDA</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="../../index.html" class="logo">Computer Vision</a>
+        <nav class="nav-links">
+          <a href="index.html">CV Home</a>
+          <a href="dataset.html">Dataset</a>
+          <a href="training.html">Training</a>
+          <a href="results.html">Results</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <a class="breadcrumb" href="index.html">← Back to CV Landing Page</a>
+          <h1>Dataset & EDA</h1>
+          <p>
+            This section summarizes dataset composition, image quality, class
+            balance, and exploratory analysis before model training.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="content-card dataset-overview">
+          <div class="dataset-accordion" data-accordion>
+            <article class="accordion-item is-open">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="true"
+              >
+                <span>📊 Dataset Overview</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content">
+                <div class="dataset-kpi-grid">
+                  <div class="dataset-kpi-card">
+                    <strong>15,620</strong>
+                    <span>Total Images</span>
+                  </div>
+                  <div class="dataset-kpi-card">
+                    <strong>5</strong>
+                    <span>Big groups</span>
+                  </div>
+                  <div class="dataset-kpi-card">
+                    <strong>67</strong>
+                    <span>Classes</span>
+                  </div>
+                  <div class="dataset-kpi-card">
+                    <strong>2,4 GB</strong>
+                    <span>Total Size</span>
+                  </div>
+                </div>
+
+                <div class="dataset-analysis-note">
+                  <p>
+                    <strong>Core Dataset Analysis:</strong> Comprehensive
+                    analysis of image properties including dimensions, file
+                    sizes, etc for Indoor Scenes dataset.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="false"
+              >
+                <span>📐 Image Size Distribution</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <figure
+                  class="dataset-figure section-anchor"
+                  id="eda-image-size"
+                >
+                  <img
+                    src="../../assets/images/computer%20vision/image%20size%20distibution.png"
+                    alt="Image size distribution chart"
+                  />
+                  <figcaption>
+                    Distribution of image sizes used for EDA and preprocessing
+                    decisions.
+                  </figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="false"
+              >
+                <span>🖼️ Interactive Sample Gallery</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="indoor-gallery" data-indoor-gallery>
+                  <p class="indoor-gallery-note">
+                    <strong>Interactive Gallery:</strong> Select scene classes
+                    to explore sample images from your IndoorCVPR dataset.
+                  </p>
+
+                  <div class="indoor-group-tabs" data-gallery-groups></div>
+
+                  <div class="indoor-gallery-controls">
+                    <h3>Select classes to display:</h3>
+                    <div class="indoor-gallery-actions">
+                      <button type="button" data-gallery-select-all>
+                        Select All
+                      </button>
+                      <button type="button" data-gallery-select-none>
+                        Select None
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    class="indoor-toggle-list"
+                    type="button"
+                    data-gallery-toggle-list
+                  >
+                    ▼ Show/Hide Class Selection
+                  </button>
+
+                  <div class="indoor-class-list" data-gallery-class-list></div>
+
+                  <div class="indoor-image-grid" data-gallery-image-grid></div>
+                  <p class="indoor-empty" data-gallery-empty>
+                    No images selected
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <a class="back-link" href="index.html">← Return to CV Page</a>
+        </div>
+      </div>
+    </section>
+
+    <script id="indoorGalleryData" type="application/json">
+      {
+        "Home": [
+          {
+            "label": "stairscase",
+            "image": "../../assets/images/computer%20vision/home_stairscase_lobby30.jpg"
+          },
+          {
+            "label": "nursery",
+            "image": "../../assets/images/computer%20vision/home_nursery_Chambre_enfant.jpg"
+          },
+          {
+            "label": "bathroom",
+            "image": "../../assets/images/computer%20vision/home_bathroom_indoor_0465.jpg"
+          },
+          {
+            "label": "livingroom",
+            "image": "../../assets/images/computer%20vision/home_livingroom_int20.jpg"
+          },
+          {
+            "label": "dining_room",
+            "image": "../../assets/images/computer%20vision/home_dining_room_room514.jpg"
+          }
+        ],
+        "Working": [
+          {
+            "label": "artstudio",
+            "image": "../../assets/images/computer%20vision/working_artstudio_artist_studio_50_13_altavista.jpg"
+          },
+          {
+            "label": "auditorium",
+            "image": "../../assets/images/computer%20vision/working_auditorium_3195_auditorium_1_8.jpg"
+          },
+          {
+            "label": "hospitalroom",
+            "image": "../../assets/images/computer%20vision/working_hospitalroom_hospital_room_04_13_altavista.jpg"
+          },
+          {
+            "label": "dentaloffice",
+            "image": "../../assets/images/computer%20vision/working_dentaloffice_dentista_109_05_flickr.jpg"
+          },
+          {
+            "label": "classroom",
+            "image": "../../assets/images/computer%20vision/working_classroom_118463509_99bde44e96.jpg"
+          }
+        ],
+        "Leisure": [
+          {
+            "label": "movietheater",
+            "image": "../../assets/images/computer%20vision/leisure_movietheater_2712925159_99ea10e562_2_9.jpg"
+          },
+          {
+            "label": "bowling",
+            "image": "../../assets/images/computer%20vision/leisure_bowling_bowling_0132.jpg"
+          },
+          {
+            "label": "fastfood_restaurant",
+            "image": "../../assets/images/computer%20vision/leisure_fastfood_restaurant_hut1.jpg"
+          },
+          {
+            "label": "bar",
+            "image": "../../assets/images/computer%20vision/leisure_bar_bar_0603.jpg"
+          },
+          {
+            "label": "gym",
+            "image": "../../assets/images/computer%20vision/leisure_gym_montreal_octo_030.jpg"
+          }
+        ],
+        "Store": [
+          {
+            "label": "jewelleryshop",
+            "image": "../../assets/images/computer%20vision/store_jewelleryshop_joyeria_157_15_flickr.jpg"
+          },
+          {
+            "label": "bookstore",
+            "image": "../../assets/images/computer%20vision/store_bookstore_bookstore_16_24_flickr.jpg"
+          },
+          {
+            "label": "toystore",
+            "image": "../../assets/images/computer%20vision/store_toystore_jugueteria_20_21_flickr.jpg"
+          },
+          {
+            "label": "videostore",
+            "image": "../../assets/images/computer%20vision/store_videostore_videoteca_38_04_altavista.jpg"
+          },
+          {
+            "label": "deli",
+            "image": "../../assets/images/computer%20vision/store_deli_deli_66_16_flickr.jpg"
+          }
+        ],
+        "Public": [
+          {
+            "label": "museum",
+            "image": "../../assets/images/computer%20vision/public_museum_museo_26_02_altavista.jpg"
+          },
+          {
+            "label": "prisoncell",
+            "image": "../../assets/images/computer%20vision/public_prisoncell_prison_cell_22_10_altavista.jpg"
+          },
+          {
+            "label": "airport_inside",
+            "image": "../../assets/images/computer%20vision/public_airport_inside_airport_inside_0193.jpg"
+          },
+          {
+            "label": "trainstation",
+            "image": "../../assets/images/computer%20vision/public_trainstation_gare_72_23_flickr.jpg"
+          },
+          {
+            "label": "inside_subway",
+            "image": "../../assets/images/computer%20vision/public_inside_subway_inside_subway_0216.jpg"
+          }
+        ]
+      }
+    </script>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>

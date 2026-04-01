@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report for Classification Projects</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="index.html" class="logo">Report for Classification Projects</a>
+        <nav class="nav-links">
+          <a href="#subjects">Subjects</a>
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="hero-badge">Deep Learning</p>
+        <h1>AI Project Hub</h1>
+        <p class="hero-subtitle">
+          A unified showcase for dataset exploration, training pipelines,
+          evaluation metrics, and qualitative results across Computer Vision,
+          Text Classification, and Multimodal AI.
+        </p>
+        <div class="hero-actions">
+          <a href="#subjects" class="btn btn-primary">Explore Projects</a>
+          <a href="#features" class="btn btn-secondary">View Highlights</a>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="subjects" class="section">
+        <div class="container">
+          <div class="section-header">
+            <p class="section-kicker">Subjects</p>
+            <h2>Three Main Project Tracks</h2>
+            <p>
+              Each track has its own landing page and is further divided into
+              Dataset, Stats, Training, and Results.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="subject-card">
+              <div class="card-icon">🖼</div>
+              <h3>Computer Vision</h3>
+              <p>
+                Image classification workflow including dataset inspection,
+                preprocessing, training experiments, and result interpretation.
+              </p>
+              <ul>
+                <li>Dataset & EDA</li>
+                <li>Key Stats</li>
+                <li>Training Pipeline</li>
+                <li>Evaluation Results</li>
+              </ul>
+              <a class="card-link" href="pages/cv/index.html">Open CV Page →</a>
+            </article>
+
+            <article class="subject-card">
+              <div class="card-icon">📝</div>
+              <h3>Text Classification</h3>
+              <p>
+                Text analytics workflow from preprocessing and token analysis to
+                training, evaluation, and error analysis.
+              </p>
+              <ul>
+                <li>Dataset & EDA</li>
+                <li>Key Stats</li>
+                <li>Training Pipeline</li>
+                <li>Evaluation Results</li>
+              </ul>
+              <a class="card-link" href="pages/text/index.html"
+                >Open Text Page →</a
+              >
+            </article>
+
+            <article class="subject-card">
+              <div class="card-icon">🔗</div>
+              <h3>Multimodal</h3>
+              <p>
+                Image-text fusion systems with separate preprocessing, encoder
+                design, fusion strategy, and evaluation.
+              </p>
+              <ul>
+                <li>Dataset & EDA</li>
+                <li>Key Stats</li>
+                <li>Training Pipeline</li>
+                <li>Evaluation Results</li>
+              </ul>
+              <a class="card-link" href="pages/multimodal/index.html"
+                >Open Multimodal Page →</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section alt-bg">
+        <div class="container">
+          <div class="section-header light">
+            <p class="section-kicker">Features</p>
+            <h2>What This Site Highlights</h2>
+            <p>
+              The site is structured for project presentation, report
+              navigation, and GitHub Pages deployment.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-box">
+              <h3>EDA</h3>
+              <p>
+                Dataset summaries, distributions, representative samples, and
+                quality inspection.
+              </p>
+            </div>
+            <div class="feature-box">
+              <h3>Statistics</h3>
+              <p>
+                Core task summaries, architecture choices, tools, and
+                deliverables.
+              </p>
+            </div>
+            <div class="feature-box">
+              <h3>Training</h3>
+              <p>
+                Preprocessing, optimization, augmentation, and training strategy
+                breakdown.
+              </p>
+            </div>
+            <div class="feature-box">
+              <h3>Results</h3>
+              <p>
+                Curves, reports, confusion matrices, ablation, and qualitative
+                interpretation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <div class="about-box">
+            <div>
+              <p class="section-kicker">About</p>
+              <h2>Built for ML Project Presentation</h2>
+              <p>
+                This project hub is intended for showcasing end-to-end machine
+                learning workflows. It can be used for coursework, thesis
+                reports, competition writeups, or research demos. Each subject
+                page can later be connected to notebooks, PDF reports, Kaggle
+                links, GitHub repos, screenshots, charts, and trained-model
+                artifacts.
+              </p>
+            </div>
+
+            <div class="about-actions">
+              <a class="btn btn-primary" href="pages/cv/index.html"
+                >Start with CV</a
+              >
+              <a class="btn btn-secondary" href="pages/text/index.html"
+                >Go to Text</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© 2026 Report for Classification Projects</p>
+        <p class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="pages/cv/index.html">CV</a>
+          <a href="pages/text/index.html">Text</a>
+          <a href="pages/multimodal/index.html">Multimodal</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
