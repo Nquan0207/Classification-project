@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Training Pipeline</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="../../index.html" class="logo">Computer Vision</a>
+        <nav class="nav-links">
+          <a href="index.html">CV Home</a>
+          <a href="dataset.html">Dataset</a>
+          <a href="training.html">Training</a>
+          <a href="results.html">Results</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </header>
+
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-box">
+          <a class="breadcrumb" href="index.html">← Back to CV Landing Page</a>
+          <h1>Training Pipeline</h1>
+          <p>
+            This section presents the end-to-end pipeline and training details.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="content-card">
+          <h2>Model Architectures</h2>
+          <div class="arch-switcher" data-model-switcher>
+            <div class="arch-controls">
+              <button class="arch-btn active" data-model-target="vit">
+                ViT Architecture
+              </button>
+              <button class="arch-btn" data-model-target="resnet50">
+                ResNet50 Architecture
+              </button>
+            </div>
+
+            <div class="arch-panels">
+              <figure class="arch-panel active" data-model-panel="vit">
+                <img
+                  src="../../assets/images/computer%20vision/vit%20architect.png"
+                  alt="Vision Transformer architecture diagram"
+                />
+                <figcaption>
+                  Vision Transformer (ViT): patch embedding + transformer
+                  encoder blocks.
+                </figcaption>
+              </figure>
+
+              <figure class="arch-panel" data-model-panel="resnet50" hidden>
+                <img
+                  src="../../assets/images/computer%20vision/resnet50%20architect.jpeg"
+                  alt="ResNet50 architecture diagram"
+                />
+                <figcaption>
+                  ResNet50: residual stages with skip connections and global
+                  pooling.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="pipeline-frame cv-pipeline">
+            <div class="cv-pipeline-track">
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">🖼️</div>
+                <strong>Image Input</strong>
+                <p>224x224 RGB images</p>
+              </div>
+
+              <div class="cv-pipeline-arrow">→</div>
+
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">🔧</div>
+                <strong>Preprocessing</strong>
+                <p>Normalize, Resize</p>
+              </div>
+
+              <div class="cv-pipeline-arrow">→</div>
+
+              <div class="cv-pipeline-step step-yellow">
+                <div class="cv-pipeline-emoji">🧠</div>
+                <strong>CNN Backbone</strong>
+                <p>ResNet50, VIT...</p>
+              </div>
+
+              <div class="cv-pipeline-arrow">→</div>
+
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">🎯</div>
+                <strong>Classifier Head</strong>
+                <p>1000 → 37 classes</p>
+              </div>
+
+              <div class="cv-pipeline-arrow">→</div>
+
+              <div class="cv-pipeline-step step-blue">
+                <div class="cv-pipeline-emoji">✨</div>
+                <strong>Classification Results</strong>
+                <p>67 indoor scene predictions</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-tutorial">
+            <div class="pipeline-tutorial-header">
+              <h2>CNN Pipeline Tutorials</h2>
+            </div>
+
+            <div class="pipeline-nav-grid">
+              <a class="pipeline-nav-card" href="#impl-input">
+                <div class="nav-emoji">🖼️</div>
+                <h3>Input Image</h3>
+                <p>Tensor formats and data loading.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-preprocess">
+                <div class="nav-emoji">🔧</div>
+                <h3>Preprocessing</h3>
+                <p>Transforms, normalization, and resizing.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-backbone">
+                <div class="nav-emoji">🧠</div>
+                <h3>CNN Backbone</h3>
+                <p>Feature extraction and transfer learning.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-head">
+                <div class="nav-emoji">🎯</div>
+                <h3>Classifier Head</h3>
+                <p>Task-specific output adaptation.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-results">
+                <div class="nav-emoji">✨</div>
+                <h3>Classification Results</h3>
+                <p>Evaluation and metrics.</p>
+              </a>
+            </div>
+          </div>
+
+          <section id="impl-input" class="impl-section">
+            <h2>Input Image Pipeline</h2>
+            <p>
+              Technical aspects of preparing input tensors (N, C, H, W) and
+              organizing samples for model training.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot: dataset class / dataloader implementation
+            </div>
+          </section>
+
+          <section id="impl-preprocess" class="impl-section">
+            <h2>Preprocessing Pipeline</h2>
+            <p>
+              Image transforms, normalization values, augmentation policy, and
+              resize strategy for each backbone family.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot: torchvision transforms and augmentation config
+            </div>
+          </section>
+
+          <section id="impl-backbone" class="impl-section">
+            <h2>CNN Backbone Pipeline</h2>
+            <p>
+              Backbone setup for ViT and ResNet50, frozen/unfrozen stages, and
+              architecture-specific input sizing.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot: model definition and backbone loading code
+            </div>
+          </section>
+
+          <section id="impl-head" class="impl-section">
+            <h2>Classifier Head Pipeline</h2>
+            <p>
+              Replace final layers and map pretrained output dimensions to the
+              target number of classes.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot: classifier head adaptation code
+            </div>
+          </section>
+
+          <section id="impl-results" class="impl-section">
+            <h2>Classification Results Pipeline</h2>
+            <p>
+              Validation loop, metrics computation, confusion matrix generation,
+              and qualitative analysis outputs.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot: evaluation code and result summary blocks
+            </div>
+          </section>
+
+          <a class="back-link" href="index.html">← Return to CV Page</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>

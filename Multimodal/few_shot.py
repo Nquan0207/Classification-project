@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import yaml
 from PIL import Image
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 from tqdm import tqdm
@@ -367,7 +367,9 @@ def evaluate(model, loader, criterion):
     avg_loss = float(np.mean(losses)) if losses else 0.0
     acc = accuracy_score(trues, preds) if trues else 0.0
     f1 = f1_score(trues, preds, average="macro") if trues else 0.0
-    return avg_loss, acc, f1
+    precision = precision_score(trues, preds, average="macro", zero_division=0) if trues else 0.0
+    recall = recall_score(trues, preds, average="macro", zero_division=0) if trues else 0.0
+    return avg_loss, acc, f1, precision, recall
 
 
 def main():
@@ -429,10 +431,11 @@ def main():
             losses.append(total_loss.item())
 
         train_loss = float(np.mean(losses)) if losses else 0.0
-        val_loss, val_acc, val_f1 = evaluate(model, val_loader, criterion)
+        val_loss, val_acc, val_f1, val_precision, val_recall = evaluate(model, val_loader, criterion)
         print(
             f"Epoch {epoch}: train_loss={train_loss:.4f} | "
-            f"val_loss={val_loss:.4f} | val_acc={val_acc:.4f} | val_f1_macro={val_f1:.4f}"
+            f"val_loss={val_loss:.4f} | val_acc={val_acc:.4f} | val_f1_macro={val_f1:.4f} | "
+            f"val_precision={val_precision:.4f} | val_recall={val_recall:.4f}"
         )
 
         if val_acc > best_val_acc:
@@ -442,8 +445,8 @@ def main():
 
     print(f"Loading best checkpoint: {runtime['save_path']}")
     model.load_state_dict(torch.load(runtime["save_path"], map_location=DEVICE))
-    test_loss, test_acc, test_f1 = evaluate(model, test_loader, criterion)
-    print(f"Test: loss={test_loss:.4f} | acc={test_acc:.4f} | f1_macro={test_f1:.4f}")
+    test_loss, test_acc, test_f1, test_precision, test_recall = evaluate(model, test_loader, criterion)
+    print(f"Test: loss={test_loss:.4f} | acc={test_acc:.4f} | f1_macro={test_f1:.4f} | precision={test_precision:.4f} | recall={test_recall:.4f}")
 
 
 if __name__ == "__main__":
