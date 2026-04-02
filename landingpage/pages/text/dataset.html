@@ -9,13 +9,12 @@
   <body>
     <header class="navbar">
       <div class="container nav-inner">
-        <a href="../../index.html" class="logo"
-          >Text Classification | Report for Classification Projects</a
-        >
+        <a href="../../index.html" class="logo">Text Classification</a>
         <nav class="nav-links">
-          <a href="../../index.html#subjects">Subjects</a>
-          <a href="../../index.html#features">Features</a>
-          <a href="../../index.html#about">About</a>
+          <a href="index.html">Text Home</a>
+          <a href="dataset.html">Dataset</a>
+          <a href="training.html">Training</a>
+          <a href="results.html">Results</a>
         </nav>
         <button class="menu-toggle" id="menuToggle">☰</button>
       </div>
@@ -24,13 +23,11 @@
     <section class="page-hero">
       <div class="container">
         <div class="page-hero-box">
-          <a class="breadcrumb" href="index.html"
-            >← Back to Text Landing Page</a
-          >
+          <a class="breadcrumb" href="index.html">← Back to Text Landing Page</a>
           <h1>Dataset & EDA</h1>
           <p>
-            This section presents corpus characteristics, label balance, text
-            length, and preprocessing observations.
+            This section summarizes corpus composition, class balance, and
+            exploratory analysis before model training.
           </p>
         </div>
       </div>
@@ -38,14 +35,84 @@
 
     <section class="content-section">
       <div class="container">
-        <div class="content-card">
-          <h2>Overview</h2>
-          <ul>
-            <li>Label distribution and imbalance analysis</li>
-            <li>Text length statistics and outlier inspection</li>
-            <li>Vocabulary and token frequency analysis</li>
-            <li>Cleaning needs such as punctuation, casing, duplication</li>
-          </ul>
+        <div class="content-card dataset-overview">
+          <div class="dataset-accordion" data-accordion>
+            <article class="accordion-item is-open">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="true">
+                <span>📊 Dataset Overview</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content">
+                <div class="impl-placeholder">
+                  Add summary cards: total samples, labels, average length, and
+                  vocabulary size.
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+                <span>📐 Text Length Distribution</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="impl-placeholder">
+                  Add chart/image: sentence or document length distribution.
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+                <span>📊 Label Distribution</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="impl-placeholder">
+                  Add chart/image: class distribution and imbalance view.
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+                <span>🗂️ Token Frequency / File Stats</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="impl-placeholder">
+                  Add chart/image: token frequency, rare terms, and dataset file
+                  statistics.
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+                <span>🧩 Group / Domain Distribution</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="impl-placeholder">
+                  Add chart/image: distribution by source, domain, or topic
+                  group.
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+                <span>🖼️ Interactive Sample Gallery</span>
+                <span class="accordion-caret">▾</span>
+              </button>
+              <div class="accordion-content" hidden>
+                <div class="impl-placeholder">
+                  Add interactive sample viewer for text examples by label.
+                </div>
+              </div>
+            </article>
+          </div>
+
           <a class="back-link" href="index.html">← Return to Text Page</a>
         </div>
       </div>

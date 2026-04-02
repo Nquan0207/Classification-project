@@ -9,13 +9,12 @@
   <body>
     <header class="navbar">
       <div class="container nav-inner">
-        <a href="../../index.html" class="logo"
-          >Text Classification | Report for Classification Projects</a
-        >
+        <a href="../../index.html" class="logo">Text Classification</a>
         <nav class="nav-links">
-          <a href="../../index.html#subjects">Subjects</a>
-          <a href="../../index.html#features">Features</a>
-          <a href="../../index.html#about">About</a>
+          <a href="index.html">Text Home</a>
+          <a href="dataset.html">Dataset</a>
+          <a href="training.html">Training</a>
+          <a href="results.html">Results</a>
         </nav>
         <button class="menu-toggle" id="menuToggle">☰</button>
       </div>
@@ -28,10 +27,7 @@
             >← Back to Text Landing Page</a
           >
           <h1>Training Pipeline</h1>
-          <p>
-            This section presents the end-to-end preprocessing and fine-tuning
-            workflow for text classification.
-          </p>
+          <p>This section presents the end-to-end pipeline and training details.</p>
         </div>
       </div>
     </section>
@@ -39,64 +35,138 @@
     <section class="content-section">
       <div class="container">
         <div class="content-card">
-          <div class="pipeline-tabs">
-            <span class="pipeline-tab active">Pipeline</span>
-            <span class="pipeline-tab">Tutorials</span>
-            <span class="pipeline-tab">Code</span>
-            <span class="pipeline-tab">Colab</span>
+          <h2>Model Architectures</h2>
+          <div class="arch-switcher" data-model-switcher>
+            <div class="arch-controls">
+              <button class="arch-btn active" data-model-target="bert">
+                Encoder Architecture
+              </button>
+              <button class="arch-btn" data-model-target="classifier">
+                Classifier Head
+              </button>
+            </div>
+
+            <div class="arch-panels">
+              <figure class="arch-panel active" data-model-panel="bert">
+                <div class="impl-placeholder">
+                  Add architecture image for your main text encoder (BERT /
+                  RoBERTa / PhoBERT).
+                </div>
+              </figure>
+
+              <figure class="arch-panel" data-model-panel="classifier" hidden>
+                <div class="impl-placeholder">
+                  Add architecture image for your classifier head.
+                </div>
+              </figure>
+            </div>
           </div>
 
-          <div class="pipeline-frame">
-            <div class="pipeline-track">
-              <div class="pipeline-step step-green">
-                <div class="pipeline-emoji">📝</div>
+          <div class="pipeline-frame cv-pipeline">
+            <div class="cv-pipeline-track">
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">📝</div>
                 <strong>Text Input</strong>
                 <p>Raw documents or sentences</p>
               </div>
 
-              <div class="pipeline-arrow">→</div>
+              <div class="cv-pipeline-arrow">→</div>
 
-              <div class="pipeline-step step-green">
-                <div class="pipeline-emoji">🧹</div>
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">🧹</div>
                 <strong>Cleaning & Tokenization</strong>
-                <p>Normalize and tokenize text</p>
+                <p>Normalize and tokenize</p>
               </div>
 
-              <div class="pipeline-arrow">→</div>
+              <div class="cv-pipeline-arrow">→</div>
 
-              <div class="pipeline-step step-yellow">
-                <div class="pipeline-emoji">🧠</div>
+              <div class="cv-pipeline-step step-yellow">
+                <div class="cv-pipeline-emoji">🧠</div>
                 <strong>Text Encoder</strong>
                 <p>BERT, RoBERTa, PhoBERT</p>
               </div>
 
-              <div class="pipeline-arrow">→</div>
+              <div class="cv-pipeline-arrow">→</div>
 
-              <div class="pipeline-step step-green">
-                <div class="pipeline-emoji">🎯</div>
+              <div class="cv-pipeline-step step-green">
+                <div class="cv-pipeline-emoji">🎯</div>
                 <strong>Classifier Head</strong>
                 <p>Task-specific prediction head</p>
               </div>
 
-              <div class="pipeline-arrow">→</div>
+              <div class="cv-pipeline-arrow">→</div>
 
-              <div class="pipeline-step step-blue">
-                <div class="pipeline-emoji">✨</div>
+              <div class="cv-pipeline-step step-blue">
+                <div class="cv-pipeline-emoji">✨</div>
                 <strong>Classification Results</strong>
                 <p>Labels + evaluation metrics</p>
               </div>
             </div>
           </div>
 
-          <h2>Pipeline Steps</h2>
-          <ul>
-            <li>Clean and normalize raw text</li>
-            <li>Tokenize using the selected pretrained tokenizer</li>
-            <li>Build train, validation, and test splits</li>
-            <li>Fine-tune transformer-based models</li>
-            <li>Track validation loss and macro F1</li>
-            <li>Analyze hard and misclassified samples</li>
-          </ul>
+          <div class="pipeline-tutorial">
+            <div class="pipeline-tutorial-header">
+              <h2>Text Pipeline Tutorials</h2>
+            </div>
+
+            <div class="pipeline-nav-grid">
+              <a class="pipeline-nav-card" href="#impl-input">
+                <div class="nav-emoji">📝</div>
+                <h3>Input Text</h3>
+                <p>Dataset format and loader pipeline.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-preprocess">
+                <div class="nav-emoji">🧹</div>
+                <h3>Preprocessing</h3>
+                <p>Tokenization and normalization setup.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-architecture">
+                <div class="nav-emoji">🧠</div>
+                <h3>Text Encoder</h3>
+                <p>Backbone architecture and loading.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-architecture">
+                <div class="nav-emoji">🎯</div>
+                <h3>Classifier Head</h3>
+                <p>Task-specific adaptation logic.</p>
+              </a>
+              <a class="pipeline-nav-card" href="#impl-architecture">
+                <div class="nav-emoji">✨</div>
+                <h3>Classification Results</h3>
+                <p>Evaluation and prediction outputs.</p>
+              </a>
+            </div>
+          </div>
+
+          <section id="impl-input" class="impl-section">
+            <h2>Input Text Pipeline</h2>
+            <p>Technical aspects of preparing text samples for model training.</p>
+            <div class="impl-placeholder">
+              Add screenshot/code: dataset class and dataloader implementation.
+            </div>
+          </section>
+
+          <section id="impl-preprocess" class="impl-section">
+            <h2>Preprocessing Pipeline</h2>
+            <p>
+              Tokenization, normalization rules, truncation, and padding
+              strategy.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot/code: tokenizer setup and transform pipeline.
+            </div>
+          </section>
+
+          <section id="impl-architecture" class="impl-section">
+            <h2>Model Architecture Pipeline</h2>
+            <p>
+              Unified architecture flow covering encoder setup, head adaptation,
+              and output stage.
+            </p>
+            <div class="impl-placeholder">
+              Add screenshot/code: model architecture and inference pipeline.
+            </div>
+          </section>
 
           <a class="back-link" href="index.html">← Return to Text Page</a>
         </div>

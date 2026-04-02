@@ -9,13 +9,12 @@
   <body>
     <header class="navbar">
       <div class="container nav-inner">
-        <a href="../../index.html" class="logo"
-          >Text Classification | Report for Classification Projects</a
-        >
+        <a href="../../index.html" class="logo">Text Classification</a>
         <nav class="nav-links">
-          <a href="../../index.html#subjects">Subjects</a>
-          <a href="../../index.html#features">Features</a>
-          <a href="../../index.html#about">About</a>
+          <a href="index.html">Text Home</a>
+          <a href="dataset.html">Dataset</a>
+          <a href="training.html">Training</a>
+          <a href="results.html">Results</a>
         </nav>
         <button class="menu-toggle" id="menuToggle">☰</button>
       </div>
@@ -29,8 +28,8 @@
           >
           <h1>Evaluation Results</h1>
           <p>
-            This section presents performance reports and qualitative text
-            analysis.
+            This section presents quantitative and qualitative evaluation
+            artifacts.
           </p>
         </div>
       </div>
@@ -39,26 +38,69 @@
     <section class="content-section">
       <div class="container">
         <div class="content-card">
-          <div class="table-like">
-            <div class="table-row header">
-              <div>Artifact</div>
-              <div>Purpose</div>
-              <div>Section</div>
+          <div class="model-compare">
+            <h2>📊 Model Comparison</h2>
+            <p>Compare validation metrics across Text experiments.</p>
+
+            <div class="compare-tabs" data-tab-group>
+              <button class="compare-tab active" type="button" data-tab-btn="performance">
+                📈 Performance
+              </button>
+              <button class="compare-tab" type="button" data-tab-btn="configuration">
+                ⚙️ Configuration
+              </button>
+              <button class="compare-tab" type="button" data-tab-btn="visualizations">
+                📊 Visualizations
+              </button>
             </div>
-            <div class="table-row">
-              <div>Classification Report</div>
-              <div>Per-class metric analysis</div>
-              <div>Quantitative</div>
+
+            <div class="compare-panel active" data-tab-panel="performance">
+              <div class="impl-placeholder">
+                Add performance table here (model, setup, accuracy, precision,
+                recall, F1).
+              </div>
             </div>
-            <div class="table-row">
-              <div>Confusion Matrix</div>
-              <div>Error concentration</div>
-              <div>Quantitative</div>
+
+            <div class="compare-panel config-panel" data-tab-panel="configuration" hidden>
+              <h3 class="config-title">⚙️ Model Configurations</h3>
+              <p class="config-subtitle">
+                Add training and evaluation configurations for your compared
+                text models.
+              </p>
+
+              <h4 class="config-section-title">🎯 Training Configuration</h4>
+              <div class="impl-placeholder">
+                Add configuration block: optimizer, scheduler, epochs, batch
+                size, and fine-tuning strategy.
+              </div>
+
+              <h4 class="config-section-title">🏗️ Model Architectures</h4>
+              <div class="impl-placeholder">
+                Add architecture block: model type, parameters, and key
+                characteristics.
+              </div>
+
+              <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+              <div class="impl-placeholder">
+                Add evaluation block: metrics, averaging method, and hardware.
+              </div>
             </div>
-            <div class="table-row">
-              <div>Error Cases</div>
-              <div>Failure-mode interpretation</div>
-              <div>Qualitative</div>
+
+            <div class="compare-panel" data-tab-panel="visualizations" hidden>
+              <div class="viz-section">
+                <h4 class="config-section-title">📉 Learning Curves</h4>
+                <div class="impl-placeholder">
+                  Add learning curves for train/validation loss and metrics.
+                </div>
+              </div>
+
+              <div class="viz-section">
+                <h4 class="config-section-title">🔍 Error Analysis Visuals</h4>
+                <div class="impl-placeholder">
+                  Add confusion matrix, error examples, and attention/explanation
+                  visualizations.
+                </div>
+              </div>
             </div>
           </div>
           <a class="back-link" href="index.html">← Return to Text Page</a>

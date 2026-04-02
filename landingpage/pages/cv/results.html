@@ -36,28 +36,246 @@
     <section class="content-section">
       <div class="container">
         <div class="content-card">
-          <h2>Evaluation Artifacts</h2>
+          <div class="model-compare">
+            <h2>📊 Model Comparison</h2>
+            <p>Compare validation metrics across CV experiments.</p>
 
-          <div class="table-like">
-            <div class="table-row header">
-              <div>Artifact</div>
-              <div>Purpose</div>
-              <div>Section</div>
+            <div class="compare-tabs" data-tab-group>
+              <button
+                class="compare-tab active"
+                type="button"
+                data-tab-btn="performance"
+              >
+                📈 Performance
+              </button>
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="configuration"
+              >
+                ⚙️ Configuration
+              </button>
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="visualizations"
+              >
+                📊 Visualizations
+              </button>
             </div>
-            <div class="table-row">
-              <div>Learning Curves</div>
-              <div>Optimization stability</div>
-              <div>Quantitative</div>
+
+            <div class="compare-panel active" data-tab-panel="performance">
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Model</th>
+                      <th>Augmentation</th>
+                      <th>Freeze Backbone</th>
+                      <th>Optimizer Mode</th>
+                      <th>Accuracy ↑</th>
+                      <th>F1 ↑</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>VIT (full + aug)</td>
+                      <td>True</td>
+                      <td>False</td>
+                      <td>full</td>
+                      <td>0.817542</td>
+                      <td>0.816077</td>
+                    </tr>
+                    <tr>
+                      <td>VIT (layerwise + aug)</td>
+                      <td>True</td>
+                      <td>False</td>
+                      <td>layerwise</td>
+                      <td>0.823944</td>
+                      <td>0.816441</td>
+                    </tr>
+                    <tr>
+                      <td>VIT (freeze backbone + Noaug)</td>
+                      <td>False</td>
+                      <td>True</td>
+                      <td>freeze</td>
+                      <td>0.800256</td>
+                      <td>0.784362</td>
+                    </tr>
+                    <tr>
+                      <td>VIT (freeze backbone + aug)</td>
+                      <td>True</td>
+                      <td>True</td>
+                      <td>freeze</td>
+                      <td>0.786812</td>
+                      <td>0.775691</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="table-row">
-              <div>Confusion Matrix</div>
-              <div>Class-wise performance</div>
-              <div>Quantitative</div>
+
+            <div
+              class="compare-panel config-panel"
+              data-tab-panel="configuration"
+              hidden
+            >
+              <h3 class="config-title">⚙️ Model Configurations</h3>
+              <p class="config-subtitle">
+                Training and evaluation configurations for all models in the
+                comparison table.
+              </p>
+
+              <h4 class="config-section-title">🎯 Training Configuration</h4>
+              <div class="config-card">
+                <h5>Transfer Learning Strategy</h5>
+                <div class="config-grid">
+                  <div>
+                    <strong>Mode:</strong
+                    ><span>Transfer Learning (Freeze CNN Backbone)</span>
+                  </div>
+                  <div>
+                    <strong>Frozen Layers:</strong
+                    ><span>ALL backbone layers</span>
+                  </div>
+                  <div>
+                    <strong>Trainable Layers:</strong
+                    ><span>Classifier head only (final FC layer)</span>
+                  </div>
+                  <div>
+                    <strong>Pre-trained Weights:</strong
+                    ><span>ImageNet-1K</span>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="config-section-title">🏗️ Model Architectures</h4>
+              <div class="config-split">
+                <div class="config-card">
+                  <h5>ViT-B/16</h5>
+                  <div class="config-grid">
+                    <div>
+                      <strong>Type:</strong><span>Vision Transformer</span>
+                    </div>
+                    <div>
+                      <strong>Depth:</strong
+                      ><span>12 Transformer encoder blocks</span>
+                    </div>
+                    <div><strong>Parameters:</strong><span>86.6M</span></div>
+                    <div>
+                      <strong>Best for:</strong
+                      ><span
+                        >Global context modeling, transfer learning,
+                        high-accuracy classification</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="config-card">
+                  <h5>ResNet50</h5>
+                  <div class="config-grid">
+                    <div>
+                      <strong>Type:</strong><span>Residual Network</span>
+                    </div>
+                    <div>
+                      <strong>Depth:</strong
+                      ><span>50 layers with skip connections</span>
+                    </div>
+                    <div><strong>Parameters:</strong><span>23.58M</span></div>
+                    <div>
+                      <strong>Best for:</strong
+                      ><span>Balanced performance and efficiency</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+              <div class="config-card">
+                <h5>Metrics & Hardware</h5>
+                <div class="config-grid">
+                  <div>
+                    <strong>Metrics:</strong
+                    ><span
+                      >Accuracy, Precision, Recall, F1-Score, Top-5
+                      Accuracy</span
+                    >
+                  </div>
+                  <div>
+                    <strong>Averaging Method:</strong><span>Macro average</span>
+                  </div>
+                  <div>
+                    <strong>Training Hardware:</strong
+                    ><span>NVIDIA GPU (CUDA enabled)</span>
+                  </div>
+                  <div>
+                    <strong>Inference Benchmark:</strong
+                    ><span
+                      >Single image, GPU inference, average over 100 runs</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="table-row">
-              <div>Grad-CAM / Attention Map</div>
-              <div>Visual interpretation</div>
-              <div>Qualitative</div>
+
+            <div class="compare-panel" data-tab-panel="visualizations" hidden>
+              <div class="viz-section">
+                <h4 class="config-section-title">📉 Learning Curves</h4>
+                <div class="viz-grid">
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/vit_freeze_noaug.png"
+                      alt="ViT freeze no augmentation curves"
+                    />
+                    <figcaption>ViT Freeze (No Aug): Loss + Accuracy</figcaption>
+                  </figure>
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/vit_freeze_aug.png"
+                      alt="ViT freeze augmentation curves"
+                    />
+                    <figcaption>ViT Freeze (Aug): Loss + Accuracy</figcaption>
+                  </figure>
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/vit_ful_aug.png"
+                      alt="ViT full augmentation curves"
+                    />
+                    <figcaption>ViT Full (Aug): Loss + Accuracy</figcaption>
+                  </figure>
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/vit_layerwise.png"
+                      alt="ViT layerwise augmentation curves"
+                    />
+                    <figcaption>
+                      ViT Layerwise (Aug): Loss + Accuracy
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="viz-section">
+                <h4 class="config-section-title">🔥 Attention Rollout</h4>
+                <div class="viz-grid viz-grid-attn">
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/correct%20prediction%20attention%20map.png"
+                      alt="Attention rollout correct prediction"
+                    />
+                    <figcaption>
+                      Correct Prediction Attention Map
+                    </figcaption>
+                  </figure>
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/images/computer%20vision/Misclasified%20prediction.png"
+                      alt="Attention rollout misclassified prediction"
+                    />
+                    <figcaption>Misclassified Prediction Attention Map</figcaption>
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
 

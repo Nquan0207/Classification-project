@@ -129,17 +129,17 @@
                 <h3>Preprocessing</h3>
                 <p>Transforms, normalization, and resizing.</p>
               </a>
-              <a class="pipeline-nav-card" href="#impl-backbone">
+              <a class="pipeline-nav-card" href="#impl-architecture">
                 <div class="nav-emoji">🧠</div>
                 <h3>Backbone</h3>
                 <p>Feature extraction and transfer learning.</p>
               </a>
-              <a class="pipeline-nav-card" href="#impl-head">
+              <a class="pipeline-nav-card" href="#impl-architecture">
                 <div class="nav-emoji">🎯</div>
                 <h3>Classifier Head</h3>
                 <p>Task-specific output adaptation.</p>
               </a>
-              <a class="pipeline-nav-card" href="#impl-results">
+              <a class="pipeline-nav-card" href="#impl-architecture">
                 <div class="nav-emoji">✨</div>
                 <h3>Classification Results</h3>
                 <p>Evaluation and metrics.</p>
@@ -150,12 +150,18 @@
           <section id="impl-input" class="impl-section">
             <h2>Input Image Pipeline</h2>
             <p>
-              Technical aspects of preparing input tensors (N, C, H, W) and
-              organizing samples for model training.
+              Technical aspects of preparing input and organizing samples for
+              model training.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot: dataset class / dataloader implementation
-            </div>
+            <figure class="dataset-figure code-figure">
+              <img
+                src="../../assets/images/computer%20vision/dataloaders.png"
+                alt="Dataloader implementation code"
+              />
+              <figcaption>
+                Dataset and dataloader implementation used for training.
+              </figcaption>
+            </figure>
           </section>
 
           <section id="impl-preprocess" class="impl-section">
@@ -164,42 +170,33 @@
               Image transforms, normalization values, augmentation policy, and
               resize strategy for each backbone family.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot: torchvision transforms and augmentation config
-            </div>
+            <figure class="dataset-figure code-figure">
+              <img
+                src="../../assets/images/computer%20vision/transform.png"
+                alt="Image transform and augmentation code"
+              />
+              <figcaption>
+                Transform and augmentation configuration for preprocessing.
+              </figcaption>
+            </figure>
           </section>
 
-          <section id="impl-backbone" class="impl-section">
-            <h2>CNN Backbone Pipeline</h2>
+          <section id="impl-architecture" class="impl-section">
+            <h2>Model Architecture Pipeline</h2>
             <p>
-              Backbone setup for ViT and ResNet50, frozen/unfrozen stages, and
-              architecture-specific input sizing.
+              Unified architecture flow covering backbone setup, classifier head
+              adaptation, and prediction output pipeline.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot: model definition and backbone loading code
-            </div>
-          </section>
-
-          <section id="impl-head" class="impl-section">
-            <h2>Classifier Head Pipeline</h2>
-            <p>
-              Replace final layers and map pretrained output dimensions to the
-              target number of classes.
-            </p>
-            <div class="impl-placeholder">
-              Add screenshot: classifier head adaptation code
-            </div>
-          </section>
-
-          <section id="impl-results" class="impl-section">
-            <h2>Classification Results Pipeline</h2>
-            <p>
-              Validation loop, metrics computation, confusion matrix generation,
-              and qualitative analysis outputs.
-            </p>
-            <div class="impl-placeholder">
-              Add screenshot: evaluation code and result summary blocks
-            </div>
+            <figure class="dataset-figure code-figure">
+              <img
+                src="../../assets/images/computer%20vision/backbone.png"
+                alt="Model architecture pipeline code"
+              />
+              <figcaption>
+                Architecture implementation for backbone, head adaptation, and
+                output stage.
+              </figcaption>
+            </figure>
           </section>
 
           <a class="back-link" href="index.html">← Return to CV Page</a>

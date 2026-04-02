@@ -37,6 +37,30 @@ document.querySelectorAll("[data-model-switcher]").forEach((switcher) => {
   });
 });
 
+document.querySelectorAll("[data-tab-group]").forEach((group) => {
+  const tabs = group.querySelectorAll("[data-tab-btn]");
+  const root = group.parentElement;
+  if (!root || !tabs.length) return;
+  const panels = root.querySelectorAll("[data-tab-panel]");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab-btn");
+      if (!target) return;
+
+      tabs.forEach((otherTab) => {
+        otherTab.classList.toggle("active", otherTab === tab);
+      });
+
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-tab-panel") === target;
+        panel.classList.toggle("active", isActive);
+        panel.hidden = !isActive;
+      });
+    });
+  });
+});
+
 document.querySelectorAll("[data-accordion]").forEach((accordion) => {
   const items = accordion.querySelectorAll(".accordion-item");
 

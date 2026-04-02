@@ -882,6 +882,192 @@ img {
   font-weight: 700;
 }
 
+.model-compare {
+  margin-bottom: 20px;
+}
+
+.model-compare p {
+  margin-top: -2px;
+  margin-bottom: 12px;
+}
+
+.compare-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.compare-tab {
+  border: 1px solid #d7dced;
+  border-radius: 10px;
+  background: #f4f6fb;
+  color: #4e5c78;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 8px;
+  cursor: pointer;
+}
+
+.compare-panel {
+  margin-top: 8px;
+}
+
+.compare-note {
+  border: 1px solid #d9dff0;
+  border-radius: 12px;
+  background: #f7f9fe;
+  color: #4e5d78;
+  padding: 18px;
+  font-weight: 600;
+}
+
+.config-panel {
+  border: 1px solid #dde2f0;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fbfcff;
+}
+
+.config-title {
+  text-align: center;
+  color: #6566c9;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+.config-subtitle {
+  text-align: center;
+  color: #5f6780;
+  margin-bottom: 18px;
+}
+
+.config-section-title {
+  color: #4b4fd9;
+  font-size: 1.85rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.config-card {
+  border: 1px solid #d9deeb;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.config-card h5 {
+  margin: 0 0 10px;
+  color: #17926d;
+  font-size: 1.6rem;
+}
+
+.config-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.config-grid > div {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 10px;
+  border-top: 1px solid #e8edf6;
+  padding-top: 8px;
+}
+
+.config-grid > div:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.config-grid strong {
+  color: #30394d;
+}
+
+.config-grid span {
+  color: #677289;
+}
+
+.config-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.compare-tab.active {
+  background: linear-gradient(110deg, #5b74df 0%, #7c4fb2 100%);
+  color: #ffffff;
+  border-color: #5b74df;
+}
+
+.compare-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #d7dced;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e4e8f2;
+  text-align: left;
+}
+
+.compare-table th {
+  background: #eef2fb;
+  color: #233b72;
+  font-weight: 800;
+}
+
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.viz-section {
+  margin-bottom: 16px;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.viz-grid-attn {
+  grid-template-columns: 1fr 1fr;
+}
+
+.viz-card {
+  margin: 0;
+  border: 1px solid #d8deef;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.viz-card img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #dde3f1;
+  display: block;
+}
+
+.viz-card figcaption {
+  margin-top: 8px;
+  color: #4d5a78;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
 .dataset-overview {
   padding: 0;
   overflow: hidden;
@@ -954,6 +1140,25 @@ img {
   padding: 18px;
 }
 
+.dataset-kpi-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.dataset-overview-thumb {
+  width: min(840px, 94vw);
+  margin: 10px auto 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #d5dbeb;
+  background: #ffffff;
+}
+
+.dataset-overview-thumb img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
 .dataset-kpi-card {
   background: linear-gradient(110deg, #0f766e 0%, #0ea5a4 100%);
   color: #ffffff;
@@ -1007,6 +1212,11 @@ img {
   border-radius: 10px;
   border: 1px solid #d5dbeb;
   background: #ffffff;
+}
+
+.code-figure img {
+  max-height: 420px;
+  object-fit: contain;
 }
 
 .dataset-figure figcaption {
@@ -1212,6 +1422,23 @@ img {
   }
 
   .dataset-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .viz-grid,
+  .viz-grid-attn {
+    grid-template-columns: 1fr;
+  }
+
+  .config-grid > div {
+    grid-template-columns: 1fr;
+  }
+
+  .config-split {
     grid-template-columns: 1fr;
   }
 
