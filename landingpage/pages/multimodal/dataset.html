@@ -77,51 +77,37 @@
 
             <article class="accordion-item">
               <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>📐 Modality Size / Length Distribution</span>
+                <span>📊 Class Distribution</span>
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: image resolution and text length
-                  distribution.
-                </div>
+                <figure class="dataset-figure">
+                  <img
+                    src="../../assets/images/multimodal/class%20distribution.png"
+                    alt="Class distribution of multimodal dataset"
+                  />
+                  <figcaption>
+                    Distribution across the 24 multimodal categories.
+                  </figcaption>
+                </figure>
               </div>
             </article>
 
             <article class="accordion-item">
               <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>📊 Label Distribution</span>
+                <span>📝 Text Length Distribution</span>
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: class distribution across multimodal labels.
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>🗂️ File / Pair Quality Distribution</span>
-                <span class="accordion-caret">▾</span>
-              </button>
-              <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: missing pairs, noisy samples, and file size
-                  statistics.
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>🧩 Group Distribution</span>
-                <span class="accordion-caret">▾</span>
-              </button>
-              <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: distribution by source group or scenario.
-                </div>
+                <figure class="dataset-figure">
+                  <img
+                    src="../../assets/images/multimodal/length%20text%20distribution.png"
+                    alt="Text length distribution of multimodal dataset"
+                  />
+                  <figcaption>
+                    Length distribution of text samples in image-text pairs.
+                  </figcaption>
+                </figure>
               </div>
             </article>
 
@@ -131,8 +117,15 @@
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add interactive sample viewer for image-text pairs.
+                <div class="news-gallery" data-news-gallery>
+                  <p class="indoor-gallery-note">
+                    <strong>Interactive Samples:</strong> Browse multimodal
+                    samples by section and inspect headline, abstract, caption,
+                    and image.
+                  </p>
+
+                  <div class="news-section-tabs" data-news-sections></div>
+                  <div class="news-card-grid" data-news-cards></div>
                 </div>
               </div>
             </article>
@@ -142,6 +135,91 @@
         </div>
       </div>
     </section>
+
+    <script id="multimodalSampleData" type="application/json">
+      [
+        {
+          "section": "Health",
+          "headline": "F.D.A. Plans to Ban Most E-Cigarette Flavors but Menthol",
+          "abstract": "The tobacco and vaping industries and conservative allies intensively lobbied against a ban on popular flavored e-cigarettes.",
+          "caption": "A new study by the National Institute on Drug Abuse found that teenagers preferred mint and mango Juul flavors. Menthol was the least popular.",
+          "image_url": "https://static01.nyt.com/images/2019/11/06/science/05FDA-FLAVORS/05FDA-FLAVORS-facebookJumbo.jpg?year=2020&h=550&w=1050&s=ad27f3a70c71de51e7605bbbc258e54782257f2ebb657a8df4f0a833b1b42809&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2019/11/06/science/05FDA-FLAVORS/05FDA-FLAVORS-facebookJumbo.jpg?year=2020&h=550&w=1050&s=ad27f3a70c71de51e7605bbbc258e54782257f2ebb657a8df4f0a833b1b42809&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Movies",
+          "headline": "Adam Driver Has Put Everything He's Got Onscreen",
+          "abstract": "Just don't ask him to explain. A likely best actor nominee for \"Marriage Story,\" he acknowledges that desire for validation, but it's tricky: \"It's not separate from who I am.\"",
+          "caption": "\"I don't have an instrument, I don't play the cello. It's yourself, so in a way it's more vulnerable,\" Adam Driver said.",
+          "image_url": "https://static01.nyt.com/images/2020/01/05/arts/05adam-driver-cover/05adam-driver-cover-facebookJumbo.jpg?year=2020&h=550&w=1050&s=47e31a12340d1c3efbcecfb59c4f7df9c3471a70de34d7e1697ad2b012d5702e&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/01/05/arts/05adam-driver-cover/05adam-driver-cover-facebookJumbo.jpg?year=2020&h=550&w=1050&s=47e31a12340d1c3efbcecfb59c4f7df9c3471a70de34d7e1697ad2b012d5702e&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Dance",
+          "headline": "Couture Creations for Dancing Bodies",
+          "abstract": "An exhibition at the Centre National du Costume de Scène in France considers the dialogue between the stage and the runway.",
+          "caption": "Iris van Herpen's metallic tutu (hold the tulle) for Benjamin Millepied's \"Clear, Loud, Bright Forward\" (2015).",
+          "image_url": "https://static01.nyt.com/images/2020/01/05/arts/05couturiers-5/05couturiers-5-facebookJumbo.jpg?year=2020&h=549&w=1050&s=a9348d55e008fc835d7f51f882f5df0589eeb08bb0e68a49685301956d9de3c7&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/01/05/arts/05couturiers-5/05couturiers-5-facebookJumbo.jpg?year=2020&h=549&w=1050&s=a9348d55e008fc835d7f51f882f5df0589eeb08bb0e68a49685301956d9de3c7&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Science",
+          "headline": "Meteor Showers in 2020 That Will Light Up Night Skies",
+          "abstract": "All year long, Earth passes through streams of cosmic debris. Here's a list of major meteor showers and how to spot one.",
+          "caption": "Perseid meteors named as \"Orinoid\" streak across the sky over Kula town of Manisa, Turkey on October 21, 2017.",
+          "image_url": "https://static01.nyt.com/images/2020/01/01/science/01meteorshowers/01meteorshowers-facebookJumbo.jpg?year=2020&h=549&w=1050&s=ecdf20df5ec2652b3be1c4b6eab3d20f72326293fdf1cf3d083edcda9d89c998&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/01/01/science/01meteorshowers/01meteorshowers-facebookJumbo.jpg?year=2020&h=549&w=1050&s=ecdf20df5ec2652b3be1c4b6eab3d20f72326293fdf1cf3d083edcda9d89c998&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Travel",
+          "headline": "New Cruise Ships to Set Sail for Antarctica",
+          "abstract": "Interested in the southernmost continent? Here's a roundup of some of the new ships and itineraries planned for the bucket-list destination.",
+          "caption": "Antarctica21's expedition ship, Ocean Nova, sails through the polar waters in the Antarctic Peninsula.",
+          "image_url": "https://static01.nyt.com/images/2020/01/05/travel/31trending-antart/31trending-antart-facebookJumbo.jpg?year=2020&h=549&w=1050&s=5ada917a76ce1e954ee4f2a5629be505ea997b8709bb01e6eca6fcace774934b&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/01/05/travel/31trending-antart/31trending-antart-facebookJumbo.jpg?year=2020&h=549&w=1050&s=5ada917a76ce1e954ee4f2a5629be505ea997b8709bb01e6eca6fcace774934b&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Theater",
+          "headline": "Review: 'Happy Birthday Doug.' Here's a Vodka Stinger.",
+          "abstract": "Drew Droege's solo show is a laugh-out-loud funny social sendup, but it doesn't add up to more than a series of vignettes.",
+          "caption": "Drew Droege in \"Happy Birthday Doug\" at SoHo Playhouse.",
+          "image_url": "https://static01.nyt.com/images/2020/02/16/arts/16birthday-doug/16birthday-doug-facebookJumbo.jpg?year=2020&h=550&w=1050&s=8db97c24dabac81b15e557b26751fe6ef2272cb2de8c2e32366ff4f41caf0893&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/02/16/arts/16birthday-doug/16birthday-doug-facebookJumbo.jpg?year=2020&h=550&w=1050&s=8db97c24dabac81b15e557b26751fe6ef2272cb2de8c2e32366ff4f41caf0893&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Technology",
+          "headline": "Silicon Valley Heads to Europe, Nervous About New Rules",
+          "abstract": "Facebook's Mark Zuckerberg and Google's Sundar Pichai have journeyed to Brussels as the European Union drafts regulation for A.I. and the digital economy.",
+          "caption": "Sundar Pichai, Alphabet's chief executive, spoke about artificial intelligence at a conference in Brussels last month.",
+          "image_url": "https://static01.nyt.com/images/2020/02/13/business/00europe-ai1/00europe-ai1-facebookJumbo.jpg?year=2020&h=550&w=1050&s=4f6ddda1d506eb85c4ed72fbd0213e6c4a9d01969b51802b99db6a1ed41db195&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/02/13/business/00europe-ai1/00europe-ai1-facebookJumbo.jpg?year=2020&h=550&w=1050&s=4f6ddda1d506eb85c4ed72fbd0213e6c4a9d01969b51802b99db6a1ed41db195&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Television",
+          "headline": "What's on TV Monday: 'America's Got Talent' and 'Ashley Garcia'",
+          "abstract": "\"The Champions,\" a spinoff talent show, finishes its second season by crowning an ultimate champion. And a new teen series debuts on Netflix.",
+          "caption": "From left, Hans, Marcelito Pomoy and Alexa Lauenburger in the season finale of \"America's Got Talent: The Champions.\"",
+          "image_url": "https://static01.nyt.com/images/2020/02/17/arts/17tvcol-1/17tvcol-1-facebookJumbo.jpg?year=2020&h=550&w=1050&s=69e20a618ac4144609881e09838ab98d1e4d6a6fb083dbc27e633a11536c5dd6&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/02/17/arts/17tvcol-1/17tvcol-1-facebookJumbo.jpg?year=2020&h=550&w=1050&s=69e20a618ac4144609881e09838ab98d1e4d6a6fb083dbc27e633a11536c5dd6&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Sports",
+          "headline": "Ryan Newman Expected to Survive Fiery Crash at Daytona 500",
+          "abstract": "Newman's team said he was in \"serious condition\" but did not have life-threatening injuries after a major wreck just before the finish. Denny Hamlin won the race for the second straight year.",
+          "caption": "Ryan Newman's car was lifted into the air near the finish of the Daytona 500 on Monday.",
+          "image_url": "https://static01.nyt.com/images/2020/02/17/sports/17daytona1/merlin_169070940_58ae61e3-0923-4c9b-aebe-45daac6c8c57-facebookJumbo.jpg?year=2020&h=549&w=1050&s=ea88cd57e24cb4f13e6ab5665fe1cf7a2f1b9852332636cbc26fb2bb6ab5a5eb&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/02/17/sports/17daytona1/merlin_169070940_58ae61e3-0923-4c9b-aebe-45daac6c8c57-facebookJumbo.jpg?year=2020&h=549&w=1050&s=ea88cd57e24cb4f13e6ab5665fe1cf7a2f1b9852332636cbc26fb2bb6ab5a5eb&k=ZQJBKqZ0VN"
+        },
+        {
+          "section": "Books",
+          "headline": "Jeremy O. Harris: Brandon Taylor 'Subjugates Us With the Deft Hand of a Dom'",
+          "abstract": "In the debut novel \"Real Life,\" a biochemistry Ph.D. candidate confronts the harder lessons of how to be a gay black man in a white world.",
+          "caption": "Like Brandon Taylor was once himself, his protagonist is a black gay grad student from the South who is mining hope for some better or different life in the haunted halls of a white academic space.",
+          "image_url": "https://static01.nyt.com/images/2020/03/29/books/review/29Harris/18Harris-facebookJumbo.jpg?year=2020&h=549&w=1050&s=e03e3cc231cee5e091db59e6ff2da04254075f1b8d6fe5a00aa65dc31281de26&k=ZQJBKqZ0VN",
+          "source_url": "https://static01.nyt.com/images/2020/03/29/books/review/29Harris/18Harris-facebookJumbo.jpg?year=2020&h=549&w=1050&s=e03e3cc231cee5e091db59e6ff2da04254075f1b8d6fe5a00aa65dc31281de26&k=ZQJBKqZ0VN"
+        }
+      ]
+    </script>
 
     <script src="../../script.js"></script>
   </body>

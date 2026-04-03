@@ -27,7 +27,9 @@
             >← Back to Text Landing Page</a
           >
           <h1>Training Pipeline</h1>
-          <p>This section presents the end-to-end pipeline and training details.</p>
+          <p>
+            This section presents the end-to-end pipeline and training details.
+          </p>
         </div>
       </div>
     </section>
@@ -139,10 +141,34 @@
           </div>
 
           <section id="impl-input" class="impl-section">
-            <h2>Input Text Pipeline</h2>
-            <p>Technical aspects of preparing text samples for model training.</p>
-            <div class="impl-placeholder">
-              Add screenshot/code: dataset class and dataloader implementation.
+            <h2>Dataset Processing</h2>
+            <p>
+              Technical aspects of preparing text samples for model training.
+            </p>
+            <div class="code-text-card">
+              <p class="code-text-title">Dataset and Dataloader</p>
+              <pre class="code-text-block"><code>class TextDataset(Dataset):
+    def __init__(self, texts, labels, tokenizer, max_len=256):
+        self.texts = texts
+        self.labels = labels
+        self.tokenizer = tokenizer
+        self.max_len = max_len
+
+    def __getitem__(self, idx):
+        enc = self.tokenizer(
+            self.texts[idx],
+            truncation=True,
+            padding="max_length",
+            max_length=self.max_len,
+            return_tensors="pt"
+        )
+        return {"input_ids": enc["input_ids"][0], "attention_mask": enc["attention_mask"][0], "labels": self.labels[idx]}
+
+train_loader = DataLoader(train_ds, batch_size=16, shuffle=True)
+val_loader = DataLoader(val_ds, batch_size=16, shuffle=False)</code></pre>
+              <p class="code-text-caption">
+                Dataset class and dataloader setup for text classification.
+              </p>
             </div>
           </section>
 
@@ -152,8 +178,25 @@
               Tokenization, normalization rules, truncation, and padding
               strategy.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot/code: tokenizer setup and transform pipeline.
+            <div class="code-text-card">
+              <p class="code-text-title">Tokenizer Pipeline</p>
+              <pre class="code-text-block"><code>tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+def preprocess_text(text):
+    text = text.strip().lower()
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+encoded_batch = tokenizer(
+    [preprocess_text(t) for t in batch_texts],
+    truncation=True,
+    padding=True,
+    max_length=256,
+    return_tensors="pt"
+)</code></pre>
+              <p class="code-text-caption">
+                Tokenizer setup with truncation and padding policy.
+              </p>
             </div>
           </section>
 
@@ -163,8 +206,24 @@
               Unified architecture flow covering encoder setup, head adaptation,
               and output stage.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot/code: model architecture and inference pipeline.
+            <div class="code-text-card">
+              <p class="code-text-title">Encoder + Classifier Head</p>
+              <pre class="code-text-block"><code>class TextClassifier(nn.Module):
+    def __init__(self, model_name="bert-base-uncased", num_classes=24):
+        super().__init__()
+        self.encoder = AutoModel.from_pretrained(model_name)
+        hidden_size = self.encoder.config.hidden_size
+        self.dropout = nn.Dropout(0.2)
+        self.classifier = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, input_ids, attention_mask):
+        outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
+        cls_repr = outputs.last_hidden_state[:, 0]
+        logits = self.classifier(self.dropout(cls_repr))
+        return logits</code></pre>
+              <p class="code-text-caption">
+                Model architecture and forward pipeline for text task.
+              </p>
             </div>
           </section>
 

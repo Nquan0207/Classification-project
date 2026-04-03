@@ -882,6 +882,46 @@ img {
   font-weight: 700;
 }
 
+.code-text-card {
+  margin-top: 8px;
+  border: 1px solid #d8deef;
+  border-radius: 12px;
+  background: #f8faff;
+  padding: 12px;
+}
+
+.code-text-title {
+  margin: 0 0 8px;
+  color: #254078;
+  font-weight: 800;
+}
+
+.code-text-block {
+  margin: 0;
+  border: 1px solid #283248;
+  border-radius: 10px;
+  background: #101420;
+  color: #d6def2;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.code-text-block code {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.code-text-caption {
+  margin: 8px 2px 2px;
+  color: #546183;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
 .model-compare {
   margin-bottom: 20px;
 }
@@ -893,7 +933,7 @@ img {
 
 .compare-tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin-bottom: 10px;
 }
@@ -907,6 +947,17 @@ img {
   text-align: center;
   padding: 10px 8px;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.compare-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(40, 52, 88, 0.16);
+  background: #eef2fb;
 }
 
 .compare-panel {
@@ -1066,6 +1117,60 @@ img {
   color: #4d5a78;
   font-weight: 700;
   font-size: 0.95rem;
+}
+
+.formula-group {
+  margin-bottom: 20px;
+}
+
+.formula-group h4 {
+  color: #3f57cc;
+  font-size: 1.85rem;
+  margin-bottom: 8px;
+}
+
+.formula-card {
+  border: 1px solid #d9deeb;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.formula-card:hover {
+  transform: translateY(-3px);
+  border-color: #9eb5f3;
+  box-shadow: 0 14px 26px rgba(64, 86, 160, 0.16);
+}
+
+.formula-card h5 {
+  margin: 0 0 10px;
+  color: #22314e;
+  font-size: 1.45rem;
+}
+
+.formula-box {
+  border: 3px solid #3b82f6;
+  border-radius: 14px;
+  background: #f4f8ff;
+  color: #2549b4;
+  font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  padding: 20px 16px;
+  margin-bottom: 10px;
+}
+
+.formula-note {
+  margin: 0;
+  color: #5d667a;
+  font-size: 1.05rem;
+  font-style: italic;
 }
 
 .dataset-overview {
@@ -1365,6 +1470,102 @@ img {
   font-size: 1.35rem;
 }
 
+.news-section-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.news-section-btn {
+  border: 1px solid #cad4ef;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #21417a;
+  font-weight: 800;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.news-section-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(26, 58, 120, 0.14);
+}
+
+.news-section-btn.active {
+  border-color: #0f766e;
+  background: linear-gradient(110deg, #0f766e 0%, #0ea5a4 100%);
+  color: #ffffff;
+}
+
+.news-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.news-card {
+  margin: 0;
+  border: 1px solid #d8deef;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgba(10, 28, 60, 0.14);
+}
+
+.news-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.news-card-body {
+  padding: 12px 13px 14px;
+}
+
+.news-card-headline {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.news-card-title-link {
+  color: #1e376f;
+  text-decoration: none;
+}
+
+.news-card-title-link:hover {
+  text-decoration: underline;
+}
+
+.news-card-media-link {
+  display: block;
+}
+
+.news-card-abstract,
+.news-card-caption {
+  margin: 0 0 8px;
+  color: #4f5d7b;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.news-card-caption {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
   .pipeline-step {
     min-width: 180px;
@@ -1444,7 +1645,8 @@ img {
 
   .indoor-group-tabs,
   .indoor-image-grid,
-  .indoor-class-list {
+  .indoor-class-list,
+  .news-card-grid {
     grid-template-columns: 1fr;
   }
 

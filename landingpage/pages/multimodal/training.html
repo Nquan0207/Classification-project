@@ -27,7 +27,9 @@
             >← Back to Multimodal Landing Page</a
           >
           <h1>Training Pipeline</h1>
-          <p>This section presents the end-to-end pipeline and training details.</p>
+          <p>
+            This section presents the end-to-end pipeline and training details.
+          </p>
         </div>
       </div>
     </section>
@@ -36,12 +38,17 @@
       <div class="container">
         <div class="content-card">
           <h2>Model Architectures</h2>
-          <div class="arch-switcher">
+          <div class="arch-switcher" data-model-switcher>
             <div class="arch-controls">
-              <span class="arch-btn active">Clip</span>
+              <button class="arch-btn active" data-model-target="clip">
+                Clip
+              </button>
+              <button class="arch-btn" data-model-target="few-short">
+                Few-shot
+              </button>
             </div>
             <div class="arch-panels">
-              <figure class="arch-panel active">
+              <figure class="arch-panel active" data-model-panel="clip">
                 <img
                   src="../../assets/images/multimodal/clip%20architecture.png"
                   alt="CLIP architecture diagram"
@@ -51,48 +58,16 @@
                   representation learning.
                 </figcaption>
               </figure>
-            </div>
-          </div>
 
-          <div class="pipeline-frame cv-pipeline">
-            <div class="cv-pipeline-track">
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🖼️</div>
-                <strong>Image + Text Input</strong>
-                <p>Aligned multimodal pairs</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🔧</div>
-                <strong>Preprocessing</strong>
-                <p>Normalize, resize, tokenize</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-yellow">
-                <div class="cv-pipeline-emoji">🧠</div>
-                <strong>Encoders</strong>
-                <p>ViT/CNN + BERT</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🎯</div>
-                <strong>Fusion + Classifier</strong>
-                <p>Early/Late/Hybrid fusion</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-blue">
-                <div class="cv-pipeline-emoji">✨</div>
-                <strong>Results</strong>
-                <p>Predictions + validation metrics</p>
-              </div>
+              <figure class="arch-panel" data-model-panel="few-short" hidden>
+                <img
+                  src="../../assets/images/multimodal/few-short.png"
+                  alt="Few-shot multimodal architecture diagram"
+                />
+                <figcaption>
+                  Few-shot adaptation flow for multimodal classification.
+                </figcaption>
+              </figure>
             </div>
           </div>
 
@@ -131,24 +106,72 @@
           </div>
 
           <section id="impl-input" class="impl-section">
-            <h2>Input Pair Pipeline</h2>
+            <h2>Preprocessing</h2>
             <p>
               Technical aspects of preparing image-text pairs and batch
               composition for training.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot/code: paired dataset and dataloader implementation.
-            </div>
-          </section>
+            <div class="code-text-card">
+              <p class="code-text-title">Paired Dataset and Dataloader</p>
+              <pre
+                class="code-text-block"
+              ><code>class N24NewsFewShotDataset(Dataset):
+    def __init__(
+        self,
+        items: List[Dict[str, object]],
+        tokenizer: RobertaTokenizerFast,
+        image_processor: ViTImageProcessor,
+        label2idx: Dict[str, int],
+        image_size: int,
+        max_text_length: int,
+    ):
+        self.items = items
+        self.tokenizer = tokenizer
+        self.label2idx = label2idx
+        self.max_text_length = max_text_length
 
-          <section id="impl-preprocess" class="impl-section">
-            <h2>Preprocessing Pipeline</h2>
-            <p>
-              Image transform pipeline, text tokenizer setup, and alignment
-              strategy.
-            </p>
-            <div class="impl-placeholder">
-              Add screenshot/code: preprocessing and augmentation config.
+        mean = image_processor.image_mean
+        std = image_processor.image_std
+        self.transform = transforms.Compose(
+            [
+                transforms.Resize((image_size, image_size)),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=mean, std=std),
+            ]
+        )
+
+    def __len__(self) -> int:
+        return len(self.items)
+
+    def __getitem__(self, index: int) -> Dict[str, torch.Tensor]:
+        item = self.items[index]
+
+        try:
+            image = Image.open(item["image"]).convert("RGB")
+        except Exception:
+            image = Image.new("RGB", (224, 224), (128, 128, 128))
+
+        pixel_values = self.transform(image)
+        encoded = self.tokenizer(
+            str(item["text"]),
+            truncation=True,
+            padding="max_length",
+            max_length=self.max_text_length,
+            return_tensors="pt",
+        )
+
+        return {
+            "sample_id": str(item["id"]),
+            "pixel_values": pixel_values,
+            "input_ids": encoded["input_ids"].squeeze(0),
+            "attention_mask": encoded["attention_mask"].squeeze(0),
+            "label": torch.tensor(self.label2idx[str(item["label"])], dtype=torch.long),
+            "label_name": str(item["label"]),
+        }</code></pre>
+              <p class="code-text-caption">
+                Paired dataset and loader implementation for multimodal
+                training.
+              </p>
             </div>
           </section>
 
@@ -158,8 +181,78 @@
               Unified architecture flow covering dual encoders, fusion logic,
               classifier head, and output stage.
             </p>
-            <div class="impl-placeholder">
-              Add screenshot/code: multimodal architecture and inference flow.
+            <div class="code-text-card">
+              <p class="code-text-title">CLIP Classifier Pipeline</p>
+              <pre class="code-text-block"><code>
+class MLPHead(nn.Module):
+    def __init__(self, in_dim: int, hidden_dim: int, out_dim: int, dropout: float):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(in_dim, hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, out_dim),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.net(x)
+
+
+class MultimodalFewShotModel(nn.Module):
+    def __init__(self, cfg: AppConfig, num_classes: int):
+        super().__init__()
+        self.cfg = cfg
+
+        # Backbone
+        self.vit = ViTModel.from_pretrained(cfg.model.vision_model)
+        self.roberta = RobertaModel.from_pretrained(cfg.model.text_model)
+
+        if cfg.model.freeze_image:
+            for param in self.vit.parameters():
+                param.requires_grad = False
+        if cfg.model.freeze_text:
+            for param in self.roberta.parameters():
+                param.requires_grad = False
+
+        img_dim = int(self.vit.config.hidden_size)
+        txt_dim = int(self.roberta.config.hidden_size)
+
+        # Heads
+        self.image_head = MLPHead(img_dim, cfg.model.mlp_hidden_dim, num_classes, cfg.model.dropout)
+        self.text_head = MLPHead(txt_dim, cfg.model.mlp_hidden_dim, num_classes, cfg.model.dropout)
+        self.fusion_head = MLPHead(
+            img_dim + txt_dim,
+            cfg.model.fusion_hidden_dim,
+            num_classes,
+            cfg.model.dropout,
+        )
+
+    def _encode_image(self, pixel_values: torch.Tensor) -> torch.Tensor:
+        out = self.vit(pixel_values=pixel_values, return_dict=True)
+        return out.last_hidden_state[:, 0, :]
+
+    def _encode_text(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
+        out = self.roberta(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
+        return out.last_hidden_state[:, 0, :]
+
+    def forward(self, pixel_values: torch.Tensor, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> Dict[str, torch.Tensor]:
+        # Input + preprocess happen in dataset/dataloader, then backbone here.
+        image_cls = self._encode_image(pixel_values)
+        text_cls = self._encode_text(input_ids, attention_mask)
+
+        # Feature fusion by concatenation.
+        fused_cls = torch.cat([image_cls, text_cls], dim=1)
+
+        # Output heads.
+        image_logits = self.image_head(image_cls)
+        text_logits = self.text_head(text_cls)
+        fusion_logits = self.fusion_head(fused_cls)
+
+        return {
+            "image_logits": image_logits,
+            "text_logits": text_logits,
+            "fusion_logits": fusion_logits,
+        }</code></pre>
             </div>
           </section>
 

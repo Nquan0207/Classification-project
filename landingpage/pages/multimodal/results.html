@@ -46,6 +46,9 @@
               <button class="compare-tab active" type="button" data-tab-btn="performance">
                 📈 Performance
               </button>
+              <button class="compare-tab" type="button" data-tab-btn="formulas">
+                🧮 Formulas
+              </button>
               <button class="compare-tab" type="button" data-tab-btn="configuration">
                 ⚙️ Configuration
               </button>
@@ -55,34 +58,372 @@
             </div>
 
             <div class="compare-panel active" data-tab-panel="performance">
-              <div class="impl-placeholder">
-                Add performance table here (model, fusion type, setup, accuracy,
-                precision, recall, F1).
+              <h4 class="config-section-title">📈 Zero-shot Performance</h4>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Model</th>
+                      <th>Accuracy</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1-score</th>
+                      <th>Macro Accuracy</th>
+                      <th>Macro Precision</th>
+                      <th>Macro Recall</th>
+                      <th>Macro F1-score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Image-only Zero-shot (CLIP)</td>
+                      <td>0.4223</td>
+                      <td>0.4163</td>
+                      <td>0.4223</td>
+                      <td>0.4056</td>
+                      <td>0.3973</td>
+                      <td>0.3822</td>
+                      <td>0.3973</td>
+                      <td>0.3764</td>
+                    </tr>
+                    <tr>
+                      <td>Text-only Zero-shot (CLIP)</td>
+                      <td>0.4635</td>
+                      <td>0.5436</td>
+                      <td>0.4635</td>
+                      <td>0.4302</td>
+                      <td>0.4494</td>
+                      <td>0.5081</td>
+                      <td>0.4494</td>
+                      <td>0.4081</td>
+                    </tr>
+                    <tr>
+                      <td>Multimodal Zero-shot (Image + Text)</td>
+                      <td>0.4991</td>
+                      <td>0.4889</td>
+                      <td>0.4991</td>
+                      <td>0.4699</td>
+                      <td>0.4728</td>
+                      <td>0.4505</td>
+                      <td>0.4728</td>
+                      <td>0.4385</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h4 class="config-section-title">🎯 Few-shot Performance</h4>
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>#Samples/Class</th>
+                      <th>Train Loss</th>
+                      <th>Val Loss</th>
+                      <th>Accuracy</th>
+                      <th>Precision (macro)</th>
+                      <th>Recall (macro)</th>
+                      <th>F1 (macro)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>50</td>
+                      <td>3.7391</td>
+                      <td>6.4894</td>
+                      <td>0.4627</td>
+                      <td>0.4410</td>
+                      <td>0.4535</td>
+                      <td>0.4472</td>
+                    </tr>
+                    <tr>
+                      <td>100</td>
+                      <td>2.9815</td>
+                      <td>5.7321</td>
+                      <td>0.5184</td>
+                      <td>0.5012</td>
+                      <td>0.5096</td>
+                      <td>0.5051</td>
+                    </tr>
+                    <tr>
+                      <td>150</td>
+                      <td>2.4367</td>
+                      <td>5.1043</td>
+                      <td>0.5639</td>
+                      <td>0.5487</td>
+                      <td>0.5562</td>
+                      <td>0.5521</td>
+                    </tr>
+                    <tr>
+                      <td>200</td>
+                      <td>2.0183</td>
+                      <td>4.6725</td>
+                      <td>0.6015</td>
+                      <td>0.5876</td>
+                      <td>0.5938</td>
+                      <td>0.5904</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="compare-panel" data-tab-panel="formulas" hidden>
+              <div class="formula-group">
+                <h4>📊 Classification Metrics Formulas</h4>
+
+                <article class="formula-card">
+                  <h5>Accuracy</h5>
+                  <div class="formula-box">
+                    Accuracy = (TP + TN) / (TP + TN + FP + FN)
+                  </div>
+                  <p class="formula-note">
+                    Overall correctness across all classes.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Precision</h5>
+                  <div class="formula-box">Precision = TP / (TP + FP)</div>
+                  <p class="formula-note">
+                    Proportion of predicted positives that are correct.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Recall</h5>
+                  <div class="formula-box">Recall = TP / (TP + FN)</div>
+                  <p class="formula-note">
+                    Proportion of actual positives identified correctly.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>F1-Score</h5>
+                  <div class="formula-box">
+                    F1 = 2 x (Precision x Recall) / (Precision + Recall)
+                  </div>
+                  <p class="formula-note">
+                    Harmonic mean between precision and recall.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Top-5 Accuracy</h5>
+                  <div class="formula-box">
+                    Top-5 Accuracy = Correct Top-5 Predictions / Total
+                    Predictions
+                  </div>
+                  <p class="formula-note">
+                    A prediction is counted correct if true label appears in top
+                    5 outputs.
+                  </p>
+                </article>
+              </div>
+
+              <div class="formula-group">
+                <h4>📈 Averaging Methods</h4>
+                <article class="formula-card">
+                  <h5>Macro Average</h5>
+                  <div class="formula-box">
+                    Macro-Metric = (1 / N) x Σ(Metric_i)
+                  </div>
+                  <p class="formula-note">
+                    Treats every class equally, regardless of class size.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Weighted Average</h5>
+                  <div class="formula-box">
+                    Weighted-Metric = Σ(Metric_i x Support_i) / Σ(Support_i)
+                  </div>
+                  <p class="formula-note">
+                    Weights each class metric by number of true instances.
+                  </p>
+                </article>
+              </div>
+
+              <div class="formula-group">
+                <h4>⚡ Resource Metrics</h4>
+                <article class="formula-card">
+                  <h5>FLOPs</h5>
+                  <div class="formula-box">
+                    FLOPs_total = Σ(FLOPs_layer), with FLOPs_layer ≈ 2 x MACs
+                  </div>
+                  <p class="formula-note">
+                    Approximate compute cost for one forward pass.
+                  </p>
+                </article>
               </div>
             </div>
 
             <div class="compare-panel config-panel" data-tab-panel="configuration" hidden>
               <h3 class="config-title">⚙️ Model Configurations</h3>
               <p class="config-subtitle">
-                Add training and evaluation configurations for your compared
-                multimodal models.
+                Training and evaluation configurations for zero-shot multimodal
+                experiments.
               </p>
 
-              <h4 class="config-section-title">🎯 Training Configuration</h4>
-              <div class="impl-placeholder">
-                Add configuration block: optimizer, scheduler, epochs, batch
-                size, and fine-tuning strategy.
-              </div>
+              <div class="arch-switcher" data-model-switcher>
+                <div class="arch-controls">
+                  <button class="arch-btn active" data-model-target="zero-shot">
+                    Zero-shot
+                  </button>
+                  <button class="arch-btn" data-model-target="few-shot">
+                    Few-shot
+                  </button>
+                </div>
 
-              <h4 class="config-section-title">🏗️ Model Architectures</h4>
-              <div class="impl-placeholder">
-                Add architecture block: image encoder, text encoder, fusion
-                layer, and classifier head.
-              </div>
+                <div class="arch-panels">
+                  <div class="arch-panel active" data-model-panel="zero-shot">
+                    <h4 class="config-section-title">🎯 Training Configuration</h4>
+                    <div class="config-card">
+                      <h5>Zero-shot Strategy</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Mode:</strong><span>Zero-shot classification</span>
+                        </div>
+                        <div>
+                          <strong>Training Data:</strong
+                          ><span>No in-domain labeled samples</span>
+                        </div>
+                        <div>
+                          <strong>Support Samples:</strong><span>0 per class</span>
+                        </div>
+                        <div>
+                          <strong>Prediction Basis:</strong
+                          ><span>Image-text similarity</span>
+                        </div>
+                        <div>
+                          <strong>Pre-trained Weights:</strong
+                          ><span>CLIP pretraining</span>
+                        </div>
+                      </div>
+                    </div>
 
-              <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
-              <div class="impl-placeholder">
-                Add evaluation block: metrics, averaging method, and hardware.
+                    <h4 class="config-section-title">🏗️ Model Architectures</h4>
+                    <div class="config-card">
+                      <h5>CLIP Model</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Model Name:</strong
+                          ><span>clip-vit-base-patch32</span>
+                        </div>
+                        <div>
+                          <strong>Type:</strong><span>Vision-language model</span>
+                        </div>
+                        <div>
+                          <strong>Image Encoder:</strong
+                          ><span>Vision Transformer (ViT-B/32)</span>
+                        </div>
+                        <div>
+                          <strong>Text Encoder:</strong
+                          ><span>Transformer-based text encoder</span>
+                        </div>
+                        <div>
+                          <strong>Language:</strong
+                          ><span>Natural language prompts</span>
+                        </div>
+                        <div>
+                          <strong>Best for:</strong
+                          ><span
+                            >Label-free classification via image-text
+                            alignment</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+                    <div class="config-card">
+                      <h5>Metrics & Hardware</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Metrics:</strong
+                          ><span>Accuracy, Precision, Recall, F1-Score</span>
+                        </div>
+                        <div>
+                          <strong>Averaging Method:</strong
+                          ><span>Macro average</span>
+                        </div>
+                        <div>
+                          <strong>Hardware:</strong
+                          ><span>NVIDIA GPU (CUDA enabled)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="arch-panel" data-model-panel="few-shot" hidden>
+                    <h4 class="config-section-title">🎯 Training Configuration</h4>
+                    <div class="config-card">
+                      <h5>Few-shot Setup</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Mode:</strong><span>Few-shot learning</span>
+                        </div>
+                        <div>
+                          <strong>Shots per Class:</strong
+                          ><span>50 / 100 / 150 / 200-shot</span>
+                        </div>
+                        <div>
+                          <strong>Support Set:</strong
+                          ><span>Small labeled subset</span>
+                        </div>
+                        <div>
+                          <strong>Adaptation:</strong
+                          ><span>Prompt tuning / linear probe</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h4 class="config-section-title">🏗️ Model Architectures</h4>
+                    <div class="config-card">
+                      <h5>Adapted Vision-Language Model</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Type:</strong
+                          ><span>Adapted vision-language model</span>
+                        </div>
+                        <div>
+                          <strong>Image Encoder:</strong
+                          ><span>google/vit-base-patch16-224-in21k</span>
+                        </div>
+                        <div>
+                          <strong>Text Encoder:</strong><span>roberta-base</span>
+                        </div>
+                        <div>
+                          <strong>Adaptation Module:</strong
+                          ><span>Prompt / adapter / linear head</span>
+                        </div>
+                        <div>
+                          <strong>Best for:</strong
+                          ><span>Low-data classification</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+                    <div class="config-card">
+                      <h5>Metrics & Hardware</h5>
+                      <div class="config-grid">
+                        <div>
+                          <strong>Metrics:</strong
+                          ><span>Accuracy, Precision, Recall, F1-Score</span>
+                        </div>
+                        <div>
+                          <strong>Averaging Method:</strong
+                          ><span>Macro average</span>
+                        </div>
+                        <div>
+                          <strong>Hardware:</strong
+                          ><span>NVIDIA GPU (CUDA enabled)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 

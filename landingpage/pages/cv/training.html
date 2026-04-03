@@ -148,20 +148,78 @@
           </div>
 
           <section id="impl-input" class="impl-section">
-            <h2>Input Image Pipeline</h2>
+            <h2>Dataset Processing</h2>
             <p>
               Technical aspects of preparing input and organizing samples for
               model training.
             </p>
-            <figure class="dataset-figure code-figure">
-              <img
-                src="../../assets/images/computer%20vision/dataloaders.png"
-                alt="Dataloader implementation code"
-              />
-              <figcaption>
+            <div class="code-text-card">
+              <p class="code-text-title">Dataset</p>
+              <pre
+                class="code-text-block"
+              ><code>class IndoorSceneDataset(Dataset):
+    def __init__(self, split_file, images_root, transform=None, class_to_idx=None):
+        self.split_file = Path(split_file)
+        self.images_root = Path(images_root)
+        self.transform = transform
+        self.samples = []
+        self.classes = []
+        self.class_to_idx = class_to_idx
+        self._build_samples()
+
+    def _build_samples(self):
+        raw_samples = []
+        class_names = set()
+
+        with self.split_file.open("r", encoding="utf-8") as f:
+            for line in f:
+                rel_path = line.strip()
+                if not rel_path:
+                    continue
+
+                parts = Path(rel_path).parts
+                if len(parts) < 3:
+                    continue
+
+                class_name = parts[1]
+                file_name = parts[-1]
+                img_path = self.images_root / class_name / file_name
+
+                if not img_path.exists():
+                    continue
+
+                raw_samples.append((img_path, class_name))
+                class_names.add(class_name)
+
+        if self.class_to_idx is None:
+            self.classes = sorted(class_names)
+            self.class_to_idx = {cls_name: idx for idx, cls_name in enumerate(self.classes)}
+        else:
+            self.classes = sorted(self.class_to_idx.keys())
+
+        self.samples = [
+            (img_path, self.class_to_idx[class_name])
+            for img_path, class_name in raw_samples
+        ]
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        img_path, label = self.samples[idx]
+
+        image = Image.open(img_path).convert("RGB")
+
+        if self.transform is not None:
+            image = self.transform(image)
+        return image, label
+    
+    def get_path(self, idx):
+        return str(self.samples[idx][0])</code></pre>
+              <p class="code-text-caption">
                 Dataset and dataloader implementation used for training.
-              </figcaption>
-            </figure>
+              </p>
+            </div>
           </section>
 
           <section id="impl-preprocess" class="impl-section">
@@ -170,15 +228,45 @@
               Image transforms, normalization values, augmentation policy, and
               resize strategy for each backbone family.
             </p>
-            <figure class="dataset-figure code-figure">
-              <img
-                src="../../assets/images/computer%20vision/transform.png"
-                alt="Image transform and augmentation code"
-              />
-              <figcaption>
+            <div class="code-text-card">
+              <p class="code-text-title">Transforms and Augmentation</p>
+              <pre
+                class="code-text-block"
+              ><code>def get_transforms(image_size=224, use_aug=False):
+    base_tf = transforms.Compose([
+        transforms.Resize((image_size, image_size)),
+        transforms.ToTensor(),
+        transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
+    ])
+
+    if use_aug:
+        train_tf = transforms.Compose([
+            transforms.Resize((image_size, image_size)),
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.RandomRotation(10),
+            transforms.ColorJitter(
+                brightness=0.2,
+                contrast=0.2,
+                saturation=0.2,
+                hue=0.05
+            ),
+            transforms.ToTensor(),
+            transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
+        ])
+    else:
+        train_tf = base_tf
+
+    test_tf = transforms.Compose([
+        transforms.Resize((image_size, image_size)),
+        transforms.ToTensor(),
+        transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD),
+    ])
+
+    return train_tf, test_tf</code></pre>
+              <p class="code-text-caption">
                 Transform and augmentation configuration for preprocessing.
-              </figcaption>
-            </figure>
+              </p>
+            </div>
           </section>
 
           <section id="impl-architecture" class="impl-section">
@@ -187,16 +275,42 @@
               Unified architecture flow covering backbone setup, classifier head
               adaptation, and prediction output pipeline.
             </p>
-            <figure class="dataset-figure code-figure">
-              <img
-                src="../../assets/images/computer%20vision/backbone.png"
-                alt="Model architecture pipeline code"
-              />
-              <figcaption>
+            <div class="code-text-card">
+              <p class="code-text-title">Backbone and Classifier Head</p>
+              <pre class="code-text-block"><code>
+        class ViTClassifier(nn.Module):
+          def __init__(self, num_classes, freeze_backbone=False, dropout=0.1):
+              super().__init__()
+
+              self.backbone = vit_b_16(weights=ViT_B_16_Weights.IMAGENET1K_V1)
+
+              in_features = self.backbone.heads.head.in_features
+              self.backbone.heads = nn.Identity()
+
+              self.classifier = nn.Sequential(
+                  nn.Linear(in_features, in_features // 2),
+                  nn.GELU(),
+                  nn.Dropout(dropout),
+                  nn.Linear(in_features // 2, num_classes)
+              )
+
+              if freeze_backbone:
+                  for p in self.backbone.parameters():
+                      p.requires_grad = False
+
+          def forward(self, x, return_features=False):
+              features = self.backbone(x)
+              logits = self.classifier(features)
+
+              if return_features:
+                  return logits, features
+              return logits
+              </code></pre>
+              <p class="code-text-caption">
                 Architecture implementation for backbone, head adaptation, and
                 output stage.
-              </figcaption>
-            </figure>
+              </p>
+            </div>
           </section>
 
           <a class="back-link" href="index.html">← Return to CV Page</a>

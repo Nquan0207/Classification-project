@@ -205,3 +205,69 @@ document.querySelectorAll("[data-indoor-gallery]").forEach((gallery) => {
   renderGroupTabs();
   renderClassList();
 });
+
+document.querySelectorAll("[data-news-gallery]").forEach((gallery) => {
+  const dataNode = document.getElementById("multimodalSampleData");
+  if (!dataNode) return;
+
+  let samples = [];
+  try {
+    samples = JSON.parse(dataNode.textContent || "[]");
+  } catch {
+    return;
+  }
+
+  if (!Array.isArray(samples) || !samples.length) return;
+
+  const sections = [...new Set(samples.map((item) => item.section).filter(Boolean))];
+  if (!sections.length) return;
+
+  const tabsRoot = gallery.querySelector("[data-news-sections]");
+  const cardsRoot = gallery.querySelector("[data-news-cards]");
+  if (!tabsRoot || !cardsRoot) return;
+
+  let activeSection = sections[0];
+
+  function renderCards() {
+    cardsRoot.innerHTML = "";
+    const visibleItems = samples.filter((item) => item.section === activeSection);
+
+    visibleItems.forEach((item) => {
+      const linkUrl = item.source_url || item.image_url || "#";
+      const card = document.createElement("article");
+      card.className = "news-card";
+      card.innerHTML = `
+        <a class="news-card-media-link" href="${linkUrl}" target="_blank" rel="noopener noreferrer">
+          <img src="${item.image_url}" alt="${item.headline}" loading="lazy" />
+        </a>
+        <div class="news-card-body">
+          <h3 class="news-card-headline">
+            <a class="news-card-title-link" href="${linkUrl}" target="_blank" rel="noopener noreferrer">${item.headline}</a>
+          </h3>
+          <p class="news-card-abstract">${item.abstract}</p>
+          <p class="news-card-caption">${item.caption}</p>
+        </div>
+      `;
+      cardsRoot.appendChild(card);
+    });
+  }
+
+  function renderTabs() {
+    tabsRoot.innerHTML = "";
+    sections.forEach((section) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `news-section-btn${section === activeSection ? " active" : ""}`;
+      btn.textContent = section;
+      btn.addEventListener("click", () => {
+        activeSection = section;
+        renderTabs();
+        renderCards();
+      });
+      tabsRoot.appendChild(btn);
+    });
+  }
+
+  renderTabs();
+  renderCards();
+});

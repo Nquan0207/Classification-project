@@ -46,6 +46,9 @@
               <button class="compare-tab active" type="button" data-tab-btn="performance">
                 📈 Performance
               </button>
+              <button class="compare-tab" type="button" data-tab-btn="formulas">
+                🧮 Formulas
+              </button>
               <button class="compare-tab" type="button" data-tab-btn="configuration">
                 ⚙️ Configuration
               </button>
@@ -58,6 +61,96 @@
               <div class="impl-placeholder">
                 Add performance table here (model, setup, accuracy, precision,
                 recall, F1).
+              </div>
+            </div>
+
+            <div class="compare-panel" data-tab-panel="formulas" hidden>
+              <div class="formula-group">
+                <h4>📊 Classification Metrics Formulas</h4>
+
+                <article class="formula-card">
+                  <h5>Accuracy</h5>
+                  <div class="formula-box">
+                    Accuracy = (TP + TN) / (TP + TN + FP + FN)
+                  </div>
+                  <p class="formula-note">
+                    Overall correctness across all classes.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Precision</h5>
+                  <div class="formula-box">Precision = TP / (TP + FP)</div>
+                  <p class="formula-note">
+                    Proportion of predicted positives that are correct.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Recall</h5>
+                  <div class="formula-box">Recall = TP / (TP + FN)</div>
+                  <p class="formula-note">
+                    Proportion of actual positives identified correctly.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>F1-Score</h5>
+                  <div class="formula-box">
+                    F1 = 2 x (Precision x Recall) / (Precision + Recall)
+                  </div>
+                  <p class="formula-note">
+                    Harmonic mean between precision and recall.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Top-5 Accuracy</h5>
+                  <div class="formula-box">
+                    Top-5 Accuracy = Correct Top-5 Predictions / Total
+                    Predictions
+                  </div>
+                  <p class="formula-note">
+                    A prediction is counted correct if true label appears in top
+                    5 outputs.
+                  </p>
+                </article>
+              </div>
+
+              <div class="formula-group">
+                <h4>📈 Averaging Methods</h4>
+                <article class="formula-card">
+                  <h5>Macro Average</h5>
+                  <div class="formula-box">
+                    Macro-Metric = (1 / N) x Σ(Metric_i)
+                  </div>
+                  <p class="formula-note">
+                    Treats every class equally, regardless of class size.
+                  </p>
+                </article>
+
+                <article class="formula-card">
+                  <h5>Weighted Average</h5>
+                  <div class="formula-box">
+                    Weighted-Metric = Σ(Metric_i x Support_i) / Σ(Support_i)
+                  </div>
+                  <p class="formula-note">
+                    Weights each class metric by number of true instances.
+                  </p>
+                </article>
+              </div>
+
+              <div class="formula-group">
+                <h4>⚡ Resource Metrics</h4>
+                <article class="formula-card">
+                  <h5>FLOPs</h5>
+                  <div class="formula-box">
+                    FLOPs_total = Σ(FLOPs_layer), with FLOPs_layer ≈ 2 x MACs
+                  </div>
+                  <p class="formula-note">
+                    Approximate compute cost for one forward pass.
+                  </p>
+                </article>
               </div>
             </div>
 
