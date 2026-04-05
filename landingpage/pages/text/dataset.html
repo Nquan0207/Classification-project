@@ -23,7 +23,9 @@
     <section class="page-hero">
       <div class="container">
         <div class="page-hero-box">
-          <a class="breadcrumb" href="index.html">← Back to Text Landing Page</a>
+          <a class="breadcrumb" href="index.html"
+            >← Back to Text Landing Page</a
+          >
           <h1>Dataset & EDA</h1>
           <p>
             This section summarizes corpus composition, class balance, and
@@ -38,76 +40,191 @@
         <div class="content-card dataset-overview">
           <div class="dataset-accordion" data-accordion>
             <article class="accordion-item is-open">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="true">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="true"
+              >
                 <span>📊 Dataset Overview</span>
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content">
-                <div class="impl-placeholder">
-                  Add summary cards: total samples, labels, average length, and
-                  vocabulary size.
+                <div class="dataset-summary-grid">
+                  <article class="dataset-summary-card">
+                    <p class="dataset-summary-label">Total Samples</p>
+                    <p class="dataset-summary-value">183,149 cases</p>
+                  </article>
+                  <article class="dataset-summary-card">
+                    <p class="dataset-summary-label">Number of Labels</p>
+                    <p class="dataset-summary-value">7 classes</p>
+                  </article>
+                  <article class="dataset-summary-card">
+                    <p class="dataset-summary-label">Maximum Length</p>
+                    <p class="dataset-summary-value">15,000 characters</p>
+                    <p class="dataset-summary-desc">
+                      Truncated to preserve substantive content within
+                      processing budgets.
+                    </p>
+                  </article>
+                  <article class="dataset-summary-card">
+                    <p class="dataset-summary-label">Minimum Length</p>
+                    <p class="dataset-summary-value">20 characters</p>
+                    <p class="dataset-summary-desc">
+                      Records shorter than this threshold after cleaning are
+                      discarded.
+                    </p>
+                  </article>
                 </div>
+                <p class="dataset-summary-note">
+                  Dataset name:
+                  <strong>Caselaw Dataset (Illinois)</strong> | Link:
+                  <a
+                    href="https://www.kaggle.com/datasets/harvardlil/caselaw-dataset-illinois/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://www.kaggle.com/datasets/harvardlil/caselaw-dataset-illinois/
+                  </a>
+                </p>
               </div>
             </article>
 
             <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>📐 Text Length Distribution</span>
-                <span class="accordion-caret">▾</span>
-              </button>
-              <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: sentence or document length distribution.
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="false"
+              >
                 <span>📊 Label Distribution</span>
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: class distribution and imbalance view.
+                <div class="label-dist-wrap">
+                  <table class="label-dist-table">
+                    <thead>
+                      <tr>
+                        <th>Class</th>
+                        <th>Count</th>
+                        <th>Percentage</th>
+                        <th>Cumulative %</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Civil</td>
+                        <td>74,338</td>
+                        <td>40.59%</td>
+                        <td>40.59%</td>
+                      </tr>
+                      <tr>
+                        <td>Criminal</td>
+                        <td>36,083</td>
+                        <td>19.70%</td>
+                        <td>60.29%</td>
+                      </tr>
+                      <tr>
+                        <td>Property</td>
+                        <td>33,938</td>
+                        <td>18.53%</td>
+                        <td>78.82%</td>
+                      </tr>
+                      <tr>
+                        <td>Probate</td>
+                        <td>16,316</td>
+                        <td>8.91%</td>
+                        <td>87.73%</td>
+                      </tr>
+                      <tr>
+                        <td>Court of Claims</td>
+                        <td>9,392</td>
+                        <td>5.13%</td>
+                        <td>92.86%</td>
+                      </tr>
+                      <tr>
+                        <td>Other</td>
+                        <td>7,409</td>
+                        <td>4.05%</td>
+                        <td>96.91%</td>
+                      </tr>
+                      <tr>
+                        <td>Corporate</td>
+                        <td>5,673</td>
+                        <td>3.10%</td>
+                        <td>100.00%</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td>Total</td>
+                        <td>183,149</td>
+                        <td>100.00%</td>
+                        <td></td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
               </div>
             </article>
 
             <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>🗂️ Token Frequency / File Stats</span>
-                <span class="accordion-caret">▾</span>
-              </button>
-              <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: token frequency, rare terms, and dataset file
-                  statistics.
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
-                <span>🧩 Group / Domain Distribution</span>
-                <span class="accordion-caret">▾</span>
-              </button>
-              <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add chart/image: distribution by source, domain, or topic
-                  group.
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-toggle" type="button" data-accordion-toggle aria-expanded="false">
+              <button
+                class="accordion-toggle"
+                type="button"
+                data-accordion-toggle
+                aria-expanded="false"
+              >
                 <span>🖼️ Interactive Sample Gallery</span>
                 <span class="accordion-caret">▾</span>
               </button>
               <div class="accordion-content" hidden>
-                <div class="impl-placeholder">
-                  Add interactive sample viewer for text examples by label.
+                <div class="text-sample-gallery">
+                  <article class="text-sample-card">
+                    <p class="text-sample-title">Class: Property</p>
+                    <a
+                      class="text-sample-preview-link"
+                      href="../../assets/docs/text/BERT_sample.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="../../assets/images/text/BERT_sample_preview.png"
+                        alt="Preview of BERT sample PDF"
+                      />
+                    </a>
+                    <a
+                      class="text-sample-open"
+                      href="../../assets/docs/text/BERT_sample.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open PDF sample
+                    </a>
+                  </article>
+
+                  <article class="text-sample-card">
+                    <p class="text-sample-title">Class: Probate</p>
+                    <a
+                      class="text-sample-preview-link"
+                      href="../../assets/docs/text/one_sample.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="../../assets/images/text/one_sample_preview.png"
+                        alt="Preview of one sample PDF"
+                      />
+                    </a>
+                    <a
+                      class="text-sample-open"
+                      href="../../assets/docs/text/one_sample.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open PDF sample
+                    </a>
+                  </article>
                 </div>
               </div>
             </article>

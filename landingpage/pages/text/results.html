@@ -43,24 +43,61 @@
             <p>Compare validation metrics across Text experiments.</p>
 
             <div class="compare-tabs" data-tab-group>
-              <button class="compare-tab active" type="button" data-tab-btn="performance">
+              <button
+                class="compare-tab active"
+                type="button"
+                data-tab-btn="performance"
+              >
                 📈 Performance
               </button>
               <button class="compare-tab" type="button" data-tab-btn="formulas">
                 🧮 Formulas
               </button>
-              <button class="compare-tab" type="button" data-tab-btn="configuration">
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="configuration"
+              >
                 ⚙️ Configuration
               </button>
-              <button class="compare-tab" type="button" data-tab-btn="visualizations">
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="visualizations"
+              >
                 📊 Visualizations
               </button>
             </div>
 
             <div class="compare-panel active" data-tab-panel="performance">
-              <div class="impl-placeholder">
-                Add performance table here (model, setup, accuracy, precision,
-                recall, F1).
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Model</th>
+                      <th>Accuracy</th>
+                      <th>Precision</th>
+                      <th>Recall</th>
+                      <th>F1</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>BiLSTM</td>
+                      <td>0.8049</td>
+                      <td>0.6837</td>
+                      <td>0.7298</td>
+                      <td>0.7030</td>
+                    </tr>
+                    <tr>
+                      <td>BERT</td>
+                      <td>0.80</td>
+                      <td>0.71</td>
+                      <td>0.84</td>
+                      <td>0.74</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
@@ -71,7 +108,19 @@
                 <article class="formula-card">
                   <h5>Accuracy</h5>
                   <div class="formula-box">
-                    Accuracy = (TP + TN) / (TP + TN + FP + FN)
+                    <span class="formula-eq">
+                      <span class="formula-term">Accuracy</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP + TN</span>
+                        <span class="formula-bottom">TP + TN + FP + FN</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">Correct Predictions</span>
+                        <span class="formula-bottom">Total Predictions</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Overall correctness across all classes.
@@ -80,7 +129,23 @@
 
                 <article class="formula-card">
                   <h5>Precision</h5>
-                  <div class="formula-box">Precision = TP / (TP + FP)</div>
+                  <div class="formula-box">
+                    <span class="formula-eq">
+                      <span class="formula-term">Precision</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP</span>
+                        <span class="formula-bottom">TP + FP</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">True Positives</span>
+                        <span class="formula-bottom"
+                          >True Positives + False Positives</span
+                        >
+                      </span>
+                    </span>
+                  </div>
                   <p class="formula-note">
                     Proportion of predicted positives that are correct.
                   </p>
@@ -88,7 +153,23 @@
 
                 <article class="formula-card">
                   <h5>Recall</h5>
-                  <div class="formula-box">Recall = TP / (TP + FN)</div>
+                  <div class="formula-box">
+                    <span class="formula-eq">
+                      <span class="formula-term">Recall</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP</span>
+                        <span class="formula-bottom">TP + FN</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">True Positives</span>
+                        <span class="formula-bottom"
+                          >True Positives + False Negatives</span
+                        >
+                      </span>
+                    </span>
+                  </div>
                   <p class="formula-note">
                     Proportion of actual positives identified correctly.
                   </p>
@@ -97,7 +178,19 @@
                 <article class="formula-card">
                   <h5>F1-Score</h5>
                   <div class="formula-box">
-                    F1 = 2 x (Precision x Recall) / (Precision + Recall)
+                    <span class="formula-eq">
+                      <span class="formula-term">F1</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">2 x Precision x Recall</span>
+                        <span class="formula-bottom">Precision + Recall</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">2TP</span>
+                        <span class="formula-bottom">2TP + FP + FN</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Harmonic mean between precision and recall.
@@ -107,8 +200,16 @@
                 <article class="formula-card">
                   <h5>Top-5 Accuracy</h5>
                   <div class="formula-box">
-                    Top-5 Accuracy = Correct Top-5 Predictions / Total
-                    Predictions
+                    <span class="formula-eq">
+                      <span class="formula-term">Top-5 Accuracy</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top"
+                          >Correct Top-5 Predictions</span
+                        >
+                        <span class="formula-bottom">Total Predictions</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     A prediction is counted correct if true label appears in top
@@ -122,7 +223,16 @@
                 <article class="formula-card">
                   <h5>Macro Average</h5>
                   <div class="formula-box">
-                    Macro-Metric = (1 / N) x Σ(Metric_i)
+                    <span class="formula-eq">
+                      <span class="formula-term">Macro-Metric</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">1</span>
+                        <span class="formula-bottom">N</span>
+                      </span>
+                      <span class="formula-op">x</span>
+                      <span>Σ(Metric_i)</span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Treats every class equally, regardless of class size.
@@ -132,7 +242,14 @@
                 <article class="formula-card">
                   <h5>Weighted Average</h5>
                   <div class="formula-box">
-                    Weighted-Metric = Σ(Metric_i x Support_i) / Σ(Support_i)
+                    <span class="formula-eq">
+                      <span class="formula-term">Weighted-Metric</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">Σ(Metric_i x Support_i)</span>
+                        <span class="formula-bottom">Σ(Support_i)</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Weights each class metric by number of true instances.
@@ -154,44 +271,244 @@
               </div>
             </div>
 
-            <div class="compare-panel config-panel" data-tab-panel="configuration" hidden>
+            <div
+              class="compare-panel config-panel"
+              data-tab-panel="configuration"
+              hidden
+            >
               <h3 class="config-title">⚙️ Model Configurations</h3>
               <p class="config-subtitle">
-                Add training and evaluation configurations for your compared
-                text models.
+                Training and evaluation configurations for BERT and Bi-LSTM.
               </p>
 
               <h4 class="config-section-title">🎯 Training Configuration</h4>
-              <div class="impl-placeholder">
-                Add configuration block: optimizer, scheduler, epochs, batch
-                size, and fine-tuning strategy.
+              <div class="compare-table-wrap">
+                <table class="compare-table">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>BERT</th>
+                      <th>Bi-LSTM</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Optimizer</td>
+                      <td>AdamW (Tiered LRs)</td>
+                      <td>AdamW (LR = 1 x 10^-3)</td>
+                    </tr>
+                    <tr>
+                      <td>Learning Rate (LR)</td>
+                      <td>BERT: 2 x 10^-5, MHA: 1 x 10^-4, MLP: 5 x 10^-5</td>
+                      <td>1 x 10^-3</td>
+                    </tr>
+                    <tr>
+                      <td>LR Schedule</td>
+                      <td>Cosine annealing with 1-epoch linear warmup</td>
+                      <td>CosineAnnealingLR (eta_min = 10^-6), no warmup</td>
+                    </tr>
+                    <tr>
+                      <td>Batch Size</td>
+                      <td>42 (Grad accum 2 -> Effective 84)</td>
+                      <td>256 (Sentence encode batch: 512)</td>
+                    </tr>
+                    <tr>
+                      <td>Weight Decay</td>
+                      <td>0.01 (weights only)</td>
+                      <td>0.01</td>
+                    </tr>
+                    <tr>
+                      <td>Max Epochs</td>
+                      <td>7 (Early stopping patience = 3)</td>
+                      <td>15 (Early stopping patience = 3)</td>
+                    </tr>
+                    <tr>
+                      <td>Gradient Clipping</td>
+                      <td>Max norm 1.0</td>
+                      <td>Max norm 1.0</td>
+                    </tr>
+                    <tr>
+                      <td>Gradient Checkpointing</td>
+                      <td>Enabled</td>
+                      <td>Disabled</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <h4 class="config-section-title">🏗️ Model Architectures</h4>
-              <div class="impl-placeholder">
-                Add architecture block: model type, parameters, and key
-                characteristics.
-              </div>
-
-              <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
-              <div class="impl-placeholder">
-                Add evaluation block: metrics, averaging method, and hardware.
-              </div>
+              <h4 class="config-section-title">🧪 Experimental Setup</h4>
+              <article class="config-card">
+                <ul class="exp-setup-list">
+                  <li>
+                    <strong>Framework:</strong> PyTorch 2.x, Transformers
+                    (HuggingFace), SentenceTransformers
+                  </li>
+                  <li>
+                    <strong>Hardware:</strong> NVIDIA T4 GPU (16 GB VRAM) on
+                    Lightning AI; CUDA 12.x
+                  </li>
+                  <li>
+                    <strong>Primary metric:</strong> Macro-averaged F1 score
+                    (treats all 7 classes equally, sensitive to minority-class
+                    performance)
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> Accuracy, per-class F1
+                  </li>
+                  <li><strong>Random seed:</strong> 42</li>
+                </ul>
+              </article>
             </div>
 
             <div class="compare-panel" data-tab-panel="visualizations" hidden>
               <div class="viz-section">
-                <h4 class="config-section-title">📉 Learning Curves</h4>
-                <div class="impl-placeholder">
-                  Add learning curves for train/validation loss and metrics.
-                </div>
-              </div>
+                <h4 class="config-section-title">🔍 Attention Maps</h4>
+                <div class="error-case-switcher" data-model-switcher>
+                  <div class="arch-controls">
+                    <button
+                      class="arch-btn active"
+                      data-model-target="wrong-case"
+                    >
+                      Wrong Case
+                    </button>
+                    <button class="arch-btn" data-model-target="correct-case">
+                      Correct Case
+                    </button>
+                  </div>
 
-              <div class="viz-section">
-                <h4 class="config-section-title">🔍 Error Analysis Visuals</h4>
-                <div class="impl-placeholder">
-                  Add confusion matrix, error examples, and attention/explanation
-                  visualizations.
+                  <div
+                    class="error-case-panel active"
+                    data-model-panel="wrong-case"
+                  >
+                    <div class="sample-cards-grid">
+                      <figure
+                        class="config-card sample-card sample-card-visual"
+                      >
+                        <img
+                          src="../../assets/images/text/attention%20map%20han.png"
+                          alt="HAN attention map sample for wrong-case prediction"
+                        />
+                        <figcaption>
+                          Attention map for a misclassified document (predicted
+                          as <strong>Other</strong>).
+                        </figcaption>
+                      </figure>
+
+                      <article class="config-card sample-card sample-card-text">
+                        <h5>Wrong-Case Sample</h5>
+                        <p>
+                          <strong
+                            >1. Most Attended Sentence (Weight ≈ 0.195):</strong
+                          >
+                        </p>
+                        <p>
+                          "[3]: After the Inspector General served the
+                          Corporation Counsel with a subpoena for the documents
+                          and the Corporation Counsel refused to provide them,
+                          the Inspector General retained private counsel and
+                          brought suit against the Corporation Counsel to compel
+                          production of the unredacted documents pursuant to the
+                          subpoena."
+                        </p>
+                        <p>
+                          <strong>Explanation:</strong> The model heavily
+                          focuses on this sentence because it encapsulates the
+                          primary legal conflict and actions.
+                        </p>
+                        <hr />
+                        <p>
+                          <strong
+                            >2. Ignored but Crucial Sentence (Weight ≈
+                            0.020):</strong
+                          >
+                        </p>
+                        <p>
+                          "[41]: On November 4, 2009, through private counsel,
+                          the Inspector General in his official capacity filed
+                          suit against the Corporation Counsel in her official
+                          capacity, seeking a declaratory judgment, a writ of
+                          mandamus, and enforcement of the subpoena..."
+                        </p>
+                        <p>
+                          <strong>Explanation:</strong> Key civil-litigation
+                          terms received low attention, causing the civil case
+                          to be misclassified as <strong>Other</strong>.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div
+                    class="error-case-panel"
+                    data-model-panel="correct-case"
+                    hidden
+                  >
+                    <div class="sample-cards-grid">
+                      <figure
+                        class="config-card sample-card sample-card-visual"
+                      >
+                        <img
+                          src="../../assets/images/text/han%20attention%20correct.png"
+                          alt="HAN attention map sample for correct-case prediction"
+                        />
+                        <figcaption>
+                          Attention map for a correctly classified document
+                          (sample view).
+                        </figcaption>
+                      </figure>
+
+                      <article class="config-card sample-card sample-card-text">
+                        <h5>Correct-Case Sample</h5>
+                        <p>
+                          <strong
+                            >1. The Most Attended Sentence (Weight ≈
+                            0.780):</strong
+                          >
+                        </p>
+                        <p>
+                          "[1]: Clair county allowed certain claims against the
+                          estate of Samuel Scott, the plaintiff's intestate, in
+                          favor of Crow &amp; Tevis, the defendants in error."
+                        </p>
+                        <p>
+                          <strong>Explanation:</strong> The model's attention is
+                          overwhelmingly concentrated on this single sentence.
+                          It successfully latched onto highly discriminative
+                          terminology specific to probate law, namely "estate"
+                          and "intestate" (dying without a legal will). Note
+                          that the text tokenizer erroneously split the word
+                          "St. Clair" across sentences 0 and 1, yet the model
+                          perfectly captured the semantic core in sentence 1.
+                          This extreme keyword concentration allowed the model
+                          to confidently and correctly predict the
+                          <strong>Probate</strong> label.
+                        </p>
+                        <hr />
+                        <p>
+                          <strong
+                            >2. The Ignored but Crucial Sentence (Weight ≈
+                            0.000):</strong
+                          >
+                        </p>
+                        <p>
+                          "[48]: The judgment of the circuit court is reversed,
+                          with costs, and the cause remanded for further
+                          proceedings."
+                        </p>
+                        <p>
+                          <strong>Explanation:</strong> Consistent with the
+                          behavior observed in Sample 1, the model completely
+                          ignores the final judicial disposition of the case.
+                          This suggests that the Bi-LSTM primarily acts as a
+                          semantic feature extractor targeting domain-specific
+                          vocabularies rather than comprehending the sequential
+                          legal outcome. However, in this instance, the strong
+                          thematic vocabulary in the early sentences was
+                          sufficient for accurate classification.
+                        </p>
+                      </article>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

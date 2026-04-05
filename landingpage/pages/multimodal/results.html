@@ -175,7 +175,19 @@
                 <article class="formula-card">
                   <h5>Accuracy</h5>
                   <div class="formula-box">
-                    Accuracy = (TP + TN) / (TP + TN + FP + FN)
+                    <span class="formula-eq">
+                      <span class="formula-term">Accuracy</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP + TN</span>
+                        <span class="formula-bottom">TP + TN + FP + FN</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">Correct Predictions</span>
+                        <span class="formula-bottom">Total Predictions</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Overall correctness across all classes.
@@ -184,7 +196,23 @@
 
                 <article class="formula-card">
                   <h5>Precision</h5>
-                  <div class="formula-box">Precision = TP / (TP + FP)</div>
+                  <div class="formula-box">
+                    <span class="formula-eq">
+                      <span class="formula-term">Precision</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP</span>
+                        <span class="formula-bottom">TP + FP</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">True Positives</span>
+                        <span class="formula-bottom"
+                          >True Positives + False Positives</span
+                        >
+                      </span>
+                    </span>
+                  </div>
                   <p class="formula-note">
                     Proportion of predicted positives that are correct.
                   </p>
@@ -192,7 +220,23 @@
 
                 <article class="formula-card">
                   <h5>Recall</h5>
-                  <div class="formula-box">Recall = TP / (TP + FN)</div>
+                  <div class="formula-box">
+                    <span class="formula-eq">
+                      <span class="formula-term">Recall</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">TP</span>
+                        <span class="formula-bottom">TP + FN</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">True Positives</span>
+                        <span class="formula-bottom"
+                          >True Positives + False Negatives</span
+                        >
+                      </span>
+                    </span>
+                  </div>
                   <p class="formula-note">
                     Proportion of actual positives identified correctly.
                   </p>
@@ -201,7 +245,19 @@
                 <article class="formula-card">
                   <h5>F1-Score</h5>
                   <div class="formula-box">
-                    F1 = 2 x (Precision x Recall) / (Precision + Recall)
+                    <span class="formula-eq">
+                      <span class="formula-term">F1</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">2 x Precision x Recall</span>
+                        <span class="formula-bottom">Precision + Recall</span>
+                      </span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">2TP</span>
+                        <span class="formula-bottom">2TP + FP + FN</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Harmonic mean between precision and recall.
@@ -211,8 +267,16 @@
                 <article class="formula-card">
                   <h5>Top-5 Accuracy</h5>
                   <div class="formula-box">
-                    Top-5 Accuracy = Correct Top-5 Predictions / Total
-                    Predictions
+                    <span class="formula-eq">
+                      <span class="formula-term">Top-5 Accuracy</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top"
+                          >Correct Top-5 Predictions</span
+                        >
+                        <span class="formula-bottom">Total Predictions</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     A prediction is counted correct if true label appears in top
@@ -226,7 +290,16 @@
                 <article class="formula-card">
                   <h5>Macro Average</h5>
                   <div class="formula-box">
-                    Macro-Metric = (1 / N) x Σ(Metric_i)
+                    <span class="formula-eq">
+                      <span class="formula-term">Macro-Metric</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">1</span>
+                        <span class="formula-bottom">N</span>
+                      </span>
+                      <span class="formula-op">x</span>
+                      <span>Σ(Metric_i)</span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Treats every class equally, regardless of class size.
@@ -236,7 +309,14 @@
                 <article class="formula-card">
                   <h5>Weighted Average</h5>
                   <div class="formula-box">
-                    Weighted-Metric = Σ(Metric_i x Support_i) / Σ(Support_i)
+                    <span class="formula-eq">
+                      <span class="formula-term">Weighted-Metric</span>
+                      <span class="formula-op">=</span>
+                      <span class="formula-frac">
+                        <span class="formula-top">Σ(Metric_i x Support_i)</span>
+                        <span class="formula-bottom">Σ(Support_i)</span>
+                      </span>
+                    </span>
                   </div>
                   <p class="formula-note">
                     Weights each class metric by number of true instances.

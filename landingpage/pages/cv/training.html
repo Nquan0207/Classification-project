@@ -41,8 +41,20 @@
               <button class="arch-btn active" data-model-target="vit">
                 ViT Architecture
               </button>
+              <button class="arch-btn" data-model-target="swin">
+                Swin Transformer
+              </button>
               <button class="arch-btn" data-model-target="resnet50">
                 ResNet50 Architecture
+              </button>
+              <button class="arch-btn" data-model-target="vgg16">
+                VGG16
+              </button>
+              <button class="arch-btn" data-model-target="mobilenetv3">
+                MobileNet_V3
+              </button>
+              <button class="arch-btn" data-model-target="efficientnetb0">
+                EfficientNet_B0
               </button>
             </div>
 
@@ -59,57 +71,99 @@
               </figure>
 
               <figure class="arch-panel" data-model-panel="resnet50" hidden>
-                <img
-                  src="../../assets/images/computer%20vision/resnet50%20architect.jpeg"
-                  alt="ResNet50 architecture diagram"
-                />
+                <div class="arch-zoom-box" data-image-zoom>
+                  <div class="arch-zoom-controls">
+                    <button type="button" class="arch-zoom-btn" data-zoom-action="out">
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="arch-zoom-btn"
+                      data-zoom-action="reset"
+                    >
+                      100%
+                    </button>
+                    <button type="button" class="arch-zoom-btn" data-zoom-action="in">
+                      +
+                    </button>
+                  </div>
+                  <div class="arch-zoom-stage">
+                    <img
+                      data-zoomable-image
+                      src="../../assets/images/computer%20vision/resnet50%20architect%20vertical.jpeg"
+                      alt="ResNet50 architecture diagram"
+                    />
+                  </div>
+                </div>
                 <figcaption>
                   ResNet50: residual stages with skip connections and global
                   pooling.
                 </figcaption>
               </figure>
-            </div>
-          </div>
 
-          <div class="pipeline-frame cv-pipeline">
-            <div class="cv-pipeline-track">
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🖼️</div>
-                <strong>Image Input</strong>
-                <p>224x224 RGB images</p>
-              </div>
+              <figure class="arch-panel" data-model-panel="swin" hidden>
+                <img
+                  src="../../assets/images/computer%20vision/swin%20transformer.png"
+                  alt="Swin Transformer architecture diagram"
+                />
+                <figcaption>
+                  Swin Transformer: hierarchical window-based transformer blocks
+                  with patch merging across stages.
+                </figcaption>
+              </figure>
 
-              <div class="cv-pipeline-arrow">→</div>
+              <figure class="arch-panel" data-model-panel="vgg16" hidden>
+                <img
+                  src="../../assets/images/computer%20vision/VGG16.png"
+                  alt="VGG16 architecture diagram"
+                />
+                <figcaption>
+                  VGG16: stacked 3x3 convolution blocks with max-pooling and
+                  fully connected classifier layers.
+                </figcaption>
+              </figure>
 
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🔧</div>
-                <strong>Preprocessing</strong>
-                <p>Normalize, Resize</p>
-              </div>
+              <figure class="arch-panel" data-model-panel="mobilenetv3" hidden>
+                <img
+                  src="../../assets/images/computer%20vision/mobilenet_v3.png"
+                  alt="MobileNet V3 architecture diagram"
+                />
+                <figcaption>
+                  MobileNet V3: lightweight depthwise-separable architecture
+                  optimized for efficient inference.
+                </figcaption>
+              </figure>
 
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-yellow">
-                <div class="cv-pipeline-emoji">🧠</div>
-                <strong>Backbone</strong>
-                <p>ResNet50, VIT...</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-green">
-                <div class="cv-pipeline-emoji">🎯</div>
-                <strong>Classifier Head</strong>
-                <p>In-features → 67 classes</p>
-              </div>
-
-              <div class="cv-pipeline-arrow">→</div>
-
-              <div class="cv-pipeline-step step-blue">
-                <div class="cv-pipeline-emoji">✨</div>
-                <strong>Classification Results</strong>
-                <p>67 indoor scene predictions</p>
-              </div>
+              <figure class="arch-panel" data-model-panel="efficientnetb0" hidden>
+                <div class="arch-zoom-box" data-image-zoom>
+                  <div class="arch-zoom-controls">
+                    <button type="button" class="arch-zoom-btn" data-zoom-action="out">
+                      -
+                    </button>
+                    <button
+                      type="button"
+                      class="arch-zoom-btn"
+                      data-zoom-action="reset"
+                    >
+                      100%
+                    </button>
+                    <button type="button" class="arch-zoom-btn" data-zoom-action="in">
+                      +
+                    </button>
+                  </div>
+                  <div class="arch-zoom-stage">
+                    <img
+                      data-zoomable-image
+                      src="../../assets/images/computer%20vision/efficientnetB0%20vertical.png"
+                      alt="EfficientNet B0 architecture diagram"
+                    />
+                  </div>
+                </div>
+                <figcaption>
+                  EfficientNet B0: compound-scaled baseline balancing network
+                  depth, width, and input resolution.
+                </figcaption>
+              </figure>
             </div>
           </div>
 

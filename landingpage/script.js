@@ -37,6 +37,36 @@ document.querySelectorAll("[data-model-switcher]").forEach((switcher) => {
   });
 });
 
+document.querySelectorAll("[data-image-zoom]").forEach((zoomBox) => {
+  const image = zoomBox.querySelector("[data-zoomable-image]");
+  if (!image) return;
+
+  const minScale = 0.25;
+  const maxScale = 3;
+  const step = 0.2;
+  let scale = 1;
+
+  const applyScale = () => {
+    image.style.transform = `scale(${scale})`;
+  };
+
+  zoomBox.querySelectorAll("[data-zoom-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const action = button.getAttribute("data-zoom-action");
+      if (action === "in") {
+        scale = Math.min(maxScale, scale + step);
+      } else if (action === "out") {
+        scale = Math.max(minScale, scale - step);
+      } else {
+        scale = 1;
+      }
+      applyScale();
+    });
+  });
+
+  applyScale();
+});
+
 document.querySelectorAll("[data-tab-group]").forEach((group) => {
   const tabs = group.querySelectorAll("[data-tab-btn]");
   const root = group.parentElement;
@@ -60,6 +90,52 @@ document.querySelectorAll("[data-tab-group]").forEach((group) => {
     });
   });
 });
+
+document
+  .querySelectorAll('.compare-panel[data-tab-panel="performance"] .compare-table')
+  .forEach((table) => {
+    const headerCells = [...table.querySelectorAll("thead th")];
+    const bodyRows = [...table.querySelectorAll("tbody tr")];
+    if (!headerCells.length || !bodyRows.length) return;
+
+    const metricColumnIndexes = headerCells
+      .map((th, idx) => ({ idx, label: th.textContent?.toLowerCase() || "" }))
+      .filter(
+        ({ label }) =>
+          (label.includes("accuracy") ||
+            label.includes("precision") ||
+            label.includes("recall") ||
+            label.includes("f1")) &&
+          !label.includes("loss")
+      )
+      .map(({ idx }) => idx);
+
+    metricColumnIndexes.forEach((colIdx) => {
+      const numericCells = bodyRows
+        .map((row) => row.querySelectorAll("td")[colIdx])
+        .filter(Boolean)
+        .map((cell) => {
+          const raw = (cell.textContent || "").replace(/,/g, "").trim();
+          const value = Number(raw);
+          return { cell, value };
+        })
+        .filter(({ value }) => Number.isFinite(value));
+
+      if (!numericCells.length) return;
+
+      const maxValue = Math.max(...numericCells.map(({ value }) => value));
+      const eps = 1e-12;
+
+      numericCells.forEach(({ cell, value }) => {
+        if (Math.abs(value - maxValue) > eps) return;
+        cell.classList.add("best-score");
+        if (!cell.querySelector(".score-pill")) {
+          const original = cell.textContent?.trim() || "";
+          cell.innerHTML = `<span class="score-pill">${original}</span>`;
+        }
+      });
+    });
+  });
 
 document.querySelectorAll("[data-accordion]").forEach((accordion) => {
   const items = accordion.querySelectorAll(".accordion-item");
