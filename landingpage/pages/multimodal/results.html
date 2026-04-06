@@ -43,16 +43,28 @@
             <p>Compare validation metrics across Multimodal experiments.</p>
 
             <div class="compare-tabs" data-tab-group>
-              <button class="compare-tab active" type="button" data-tab-btn="performance">
+              <button
+                class="compare-tab active"
+                type="button"
+                data-tab-btn="performance"
+              >
                 📈 Performance
               </button>
               <button class="compare-tab" type="button" data-tab-btn="formulas">
                 🧮 Formulas
               </button>
-              <button class="compare-tab" type="button" data-tab-btn="configuration">
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="configuration"
+              >
                 ⚙️ Configuration
               </button>
-              <button class="compare-tab" type="button" data-tab-btn="visualizations">
+              <button
+                class="compare-tab"
+                type="button"
+                data-tab-btn="visualizations"
+              >
                 📊 Visualizations
               </button>
             </div>
@@ -338,7 +350,11 @@
               </div>
             </div>
 
-            <div class="compare-panel config-panel" data-tab-panel="configuration" hidden>
+            <div
+              class="compare-panel config-panel"
+              data-tab-panel="configuration"
+              hidden
+            >
               <h3 class="config-title">⚙️ Model Configurations</h3>
               <p class="config-subtitle">
                 Training and evaluation configurations for zero-shot multimodal
@@ -357,19 +373,23 @@
 
                 <div class="arch-panels">
                   <div class="arch-panel active" data-model-panel="zero-shot">
-                    <h4 class="config-section-title">🎯 Training Configuration</h4>
+                    <h4 class="config-section-title">
+                      🎯 Training Configuration
+                    </h4>
                     <div class="config-card">
                       <h5>Zero-shot Strategy</h5>
                       <div class="config-grid">
                         <div>
-                          <strong>Mode:</strong><span>Zero-shot classification</span>
+                          <strong>Mode:</strong
+                          ><span>Zero-shot classification</span>
                         </div>
                         <div>
                           <strong>Training Data:</strong
                           ><span>No in-domain labeled samples</span>
                         </div>
                         <div>
-                          <strong>Support Samples:</strong><span>0 per class</span>
+                          <strong>Support Samples:</strong
+                          ><span>0 per class</span>
                         </div>
                         <div>
                           <strong>Prediction Basis:</strong
@@ -391,7 +411,8 @@
                           ><span>clip-vit-base-patch32</span>
                         </div>
                         <div>
-                          <strong>Type:</strong><span>Vision-language model</span>
+                          <strong>Type:</strong
+                          ><span>Vision-language model</span>
                         </div>
                         <div>
                           <strong>Image Encoder:</strong
@@ -415,7 +436,9 @@
                       </div>
                     </div>
 
-                    <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+                    <h4 class="config-section-title">
+                      🧪 Evaluation Configuration
+                    </h4>
                     <div class="config-card">
                       <h5>Metrics & Hardware</h5>
                       <div class="config-grid">
@@ -436,7 +459,9 @@
                   </div>
 
                   <div class="arch-panel" data-model-panel="few-shot" hidden>
-                    <h4 class="config-section-title">🎯 Training Configuration</h4>
+                    <h4 class="config-section-title">
+                      🎯 Training Configuration
+                    </h4>
                     <div class="config-card">
                       <h5>Few-shot Setup</h5>
                       <div class="config-grid">
@@ -471,7 +496,8 @@
                           ><span>google/vit-base-patch16-224-in21k</span>
                         </div>
                         <div>
-                          <strong>Text Encoder:</strong><span>roberta-base</span>
+                          <strong>Text Encoder:</strong
+                          ><span>roberta-base</span>
                         </div>
                         <div>
                           <strong>Adaptation Module:</strong
@@ -484,7 +510,9 @@
                       </div>
                     </div>
 
-                    <h4 class="config-section-title">🧪 Evaluation Configuration</h4>
+                    <h4 class="config-section-title">
+                      🧪 Evaluation Configuration
+                    </h4>
                     <div class="config-card">
                       <h5>Metrics & Hardware</h5>
                       <div class="config-grid">
@@ -510,16 +538,17 @@
             <div class="compare-panel" data-tab-panel="visualizations" hidden>
               <div class="viz-section">
                 <h4 class="config-section-title">📉 Learning Curves</h4>
-                <div class="impl-placeholder">
-                  Add learning curves for train/validation loss and metrics.
-                </div>
-              </div>
-
-              <div class="viz-section">
-                <h4 class="config-section-title">🔍 Cross-modal Visual Analysis</h4>
-                <div class="impl-placeholder">
-                  Add confusion matrix, attention/alignment maps, and
-                  qualitative case studies.
+                <div class="viz-grid cv-learning-grid">
+                  <figure class="viz-card">
+                    <img
+                      src="../../assets/charts/multimodal/learning%20curve.png"
+                      alt="Multimodal learning curves for training and validation metrics"
+                    />
+                    <figcaption>
+                      Multimodal Learning Curves: Train/Validation Loss and
+                      Performance Metrics
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
             </div>
